@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title> Envion progamacion y noticias</title>
+            <link  rel="stylesheet" href="estilos.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+        </head>
+
+
+        <body>
+           <nav>
+             <ul>   
+                <a href="index.html">Inicio</a>
+                <a href="Noticiasyprogramacion.html">Noticias y programaci&oacute;n</a>
+                <a href="invetario.html">Inventario</a>
+                <a href="Formularioinventario.html">Formulario de inventario</a>
+                <a href="Loginnformularioticiasyprogramacion.html">Formulario de noticias y formulario de programaci&oacute;n</a>
+                <a href="formularicontacto.html">Contacto</a>
+             </ul>
+           </nav>
+           <header>
+              <h2>Envion progamacion y noticias</h2>
+           </header>
+           <main>
+                <h3>noticias</h3>
+                <form action="controlador.php" method="post">
+                    <div class="grindclass2">  
+                        <label for="noticainventario">Noticia:</label>
+
+                        <input type="text" id="noticiainventario" name="noticiainventario" required>
+
+                        <label  for="Fechainventario">Fecha:</label> 
+            
+                        <input type="text" id="Fechainventario" name="Fechainventario" required>
+                        <label  for="lugar">Lugar:</label> 
+            
+                        <input type="text" id="lugar" name="lugar" required>
+                        <label for="textoprogamacion">Texto:</label>
+                        <textarea id="textoprogamacion"></textarea>
+                        
+                    </div><br>
+                    <button class="botonparaenviar2" type="submit">Enviar</button>
+                </form>
+                <h3> progamacion</h3>
+                <form action="controlador.php" methos="post">
+                    <div class="grindclass4">  
+                        <label for="nivel">Nivel:</label>
+
+                        <input type="text" id="nivel" name="nivel" required>
+
+                        <label  for="Ano">Año:</label> 
+            
+                        <input type="text" id="ano" name="ano" required>
+                        <label  for="profesor">Profesor:</label> 
+            
+                        <input type="text" id="profesor" name="profesor" required>
+                        <label for="achivo">sube el achivo:</label>
+                        <input type="file" id="achivo" required>                        
+                </div><br>
+                    <button class="botonparaenviar2" type="submit">Enviar</button>
+               </form>
+            </main>
+            <footer>
+                <h4>Bienvenido a la web del deptameto de m&#250;sica del IES BAJO  Arag&#243;n.</h4>
+
+            </footer>
+        </body>
+
+    </html>    
