@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title> Login Formulario invetarió</title>
+            <link  rel="stylesheet" href="estilos.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+        </head>
+
+
+        <body>
+           <nav>
+             <ul>   
+                <a href="index.html">Inicio</a>
+                <a href="Noticiasyprogramacion.html">Noticias y programaci&oacute;n</a>
+                <a href="invetario.html">Inventario</a>
+                <a href="#">Formulario de inventario</a>
+                <a href="Loginnformularioticiasyprogramacion.html">Formulario de noticias y formulario de programaci&oacute;n</a>
+                <a href="formularicontacto.html">Contacto</a>
+             </ul>
+           </nav>
+           <header>
+              <h2>Login formulario inventario</h2>
+           </header>
+           <main>
+                <form action="controlador.php" method="post">
+                    <div class="grindclass">  
+                        <label for="usuarioinventario">Usuario:</label>
+
+                        <input type="text" id="usuarioinventario" name="usuarioinventario"  pattern="^[A-Z0-9]{9}$" minlength="9" maxlength="9"  required>
+                        <script>
+                            const input = document.getElementById("usuarioinventario"); //coge el input adecuado del documeto
+                            input.oninvalid = function () { //oninvalid dice que funciona cuando el campo no esta vereficado 
+                                input.setCustomValidity("Tiene que tener 8 numeros y una letra mayuscuda "); //setCustomValidity cambiar el mensaje
+                            };
+                            input.oninput = function () { //borrar el mensaje
+                                input.setCustomValidity(""); //borar el  mensaje
+                            };
+                        </script>
+                        <label  for="contrasenainventario">Contrasena:</label> 
+            
+                        <input type="password" id="contrasenainventario" name="contrasenainventario" minlength="8" required>
+                        <script>
+                            const input2 = document.getElementById("contrasenainventario");
+                            input2.oninvalid = function () {
+                                input2.setCustomValidity("Se reciere como mínimo 8 caracteres"); //setCustomValidity cambiar el mensaje
+
+                            };
+                            input2.oninput = function () {
+                                input2.setCustomValidity("");
+                            };
+                        </script>
+                       
+                    </div><br>
+                    <button class="botonparaenviar" type="submit">Enviar</button>
+        
+                </form>
+                <a href="Formularioinventario.html">enlace pobicional para entra al formulario del invetario porque todabia no hay php</a>
+            </main>
+            <footer>
+                <h4>Bienvenido a la web del deptameto de m&#250;sica del IES BAJO  Arag&#243;n.</h4>
+
+            </footer>
+        </body>
+
+    </html>    

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title> Loginn formulario noticias y programacion</title>
+            <link  rel="stylesheet" href="estilos.css">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+
+        </head>
+
+
+        <body>
+          <nav>       
+            <ul>   
+                <a href="index.html">Inicio</a>
+                <a href="Noticiasyprogramacion.html">Noticias y programaci&oacute;n</a>
+                <a href="invetario.html">Inventario</a>
+                <a href="Loginnformularioinventario.html">Formulario de inventario</a>
+                <a href="#">Formulario de noticias y formulario de programaci&oacute;n</a>
+                <a href="formularicontacto.html">Contacto</a>
+            </ul>
+          </nav>
+          <header>
+            <h2>Loginn formulario noticias y programacion</h2>
+          </header>  
+          <main>
+            <form action="controlador.php" method="post">
+              <div class="grindclass">  
+                <label for="usuariofyp">Usuario:</label>
+
+                <input type="text" id="usuariofyp" name="usuariofyp" pattern="^[A-Z0-9]{9}$"  minlength="9" maxlength="9" required>
+
+                   <script>
+                      const input3 = document.getElementById("usuariofyp"); //coge el input adecuado del documeto
+                        input3.oninvalid = function () { //oninvalid dice que funciona cuando el campo no esta vereficado 
+                           input3.setCustomValidity("Tiene que tener 8 numeros y una letra mayuscuda "); //setCustomValidity cambiar el mensaje
+                     };
+                        input3.oninput = function () { //borrar el mensaje
+                          input3.setCustomValidity(""); //borar el  mensaje
+                     };
+                        </script>    
+                <label  for="contrasenafyp">Contrasena:</label> 
+    
+                <input type="password" id="contrasenafyp" name="contrasenafyp" minlength="8" required>
+                <script>
+                  const input4 = document.getElementById("contrasenainventario");
+                  input4.oninvalid = function () {
+                     input4.setCustomValidity("Se reciere como mínimo 8 caracteres"); //setCustomValidity cambiar el mensaje
+
+                  };
+                  input4.oninput = function () {
+                     input4.setCustomValidity("");
+                  };
+                </script>        
+              </div><br>
+              <button class="botonparaenviar" type="submit">Enviar</button>
+
+          </form>
+          <a href="envioprogamacionynoticas.html">>enlace pobicional para entra al formulario del Noticias y programacion porque todabia no hay php</a>
+          </main>
+          <footer>
+            <h4>Bienvenido a la web del deptameto de m&#250;sica del IES BAJO  Arag&#243;n.</h4>
+
+          </footer>
+        </body>
+
+    </html>    
