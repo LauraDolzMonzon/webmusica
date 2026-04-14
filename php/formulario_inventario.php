@@ -1,10 +1,22 @@
 <?php
     session_start();
-    require __DIR__. "/conexion.php";
-    if (!isset($_SESSION['rol'])){
+    $rolespermitidofi = ['admin'];
+    if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+        session_unset();
+        session_destroy();
         header("Location: login_formulario_inventario.php");
-        exit;
+        exit();
     }
+   $servidor = "127.0.0.1";
+   $usuario = "root";
+   $contrasenna = "";
+   $basededatos = "webmusica";
+   $conn = new mysqli($servidor, $usuario, $contrasenna, $basededatos);
+   if ($conn->connect_error){
+            die("error de conexion" . $conn->connect_error);
+    } 
+    $sqlformularoinvetario = "SELECT ubicacion, anyo_de_adquisicion, unidades, familia, dispositivo_acustico, id_instrumento  FROM instrumento ORDER BY dispositivo_acustico ";
+    $resultadoinvetarioformulario = $conn->query($sqlformularoinvetario);
 ?>
 <!DOCTYPE html>
   <html>
@@ -14,7 +26,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="../validaciones_inventario.js"> </script>
         <link  rel="stylesheet" href="../estilos.css">
-        <title> Inventario</title>
+        <title>Formulario inventario</title>
 
 
 
@@ -28,9 +40,11 @@
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>
+                <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+
             </ul>
         </nav>
-        <header><h2>Inventario</h2></header>        
+        <header><h2>Formulario inventario</h2></header>        
         <main>
             <h3>A&ntilde;adir instrumento</h3>
             <form action="controladorformularioinventario.php" method="post">
@@ -50,7 +64,7 @@
                     <td>
                     
                         <select name="invetariofamilia" id="invetariofamilia" required>
-                            <option value="sinespecificarfamilia2">Sinespecificarfamilia</option>
+                            <option value="sinespecificarfamilia">Sinespecificarfamilia</option>
                             <option value="vientometral">Viento metal</option>
                             <option value="vientomadera">Viento madera</option>
                             <option value="pesucion">Percusi&oacute;n</option>
@@ -58,7 +72,7 @@
                         </select> 
                     </td>
                     <td>  <select name="ivetarioubicacion" id="ivetarioubicacion" required>
-                            <option value="sinespecificarubicacion2">Sinespecificarubicacion</option>
+                            <option value="sinespecificarubicacion">Sinespecificarubicacion</option>
                             <option value="RMU1">RMU1</option>
                             <option value="RMU2">RMU2</option>
                         </select>
@@ -71,38 +85,63 @@
 
                     <td><input type="date" id="invetarioanodeadquision" name="invetarioanodeadquision" min="1900" max="2100" required> </td>
                    
-                    <td><button type="submit" class="botonadminstrainventario">Enviar</button></td>
+                    <td><button type="submit" class="botonadminstrainventario" name="formularioinvetariopricipal">Enviar</button></td>
                  </tr>  
                </table>
                <h3>Administrar instrumentos</h3>
             </form>        
             <div > 
-               <form action="controlador.php"     method="post">
+              
             
-                    <table>
-                        <tr>
-                            <th>ID</th>
-                            <th>Instrumento</th>
-                            <th>Familia</th>
-                            <th>Ubicaci&oacute;n</th>
-                            <th>Unidades</th>
-                            <th>A&ntilde;o de adquisici&oacute;n</th>
-                            <th colspan="2">Administrar</th>
-                            
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><button class="botonadminstrainventarioeditaryeliminar" type="submit">Editar</button></td>
-                            <td><button class="botonadminstrainventarioeditaryeliminar" type="submit">Eliminar</button></td>
+              <?php   
+                if ($resultadoinvetarioformulario->num_rows > 0){
+                    while($row = $resultadoinvetarioformulario->fetch_assoc()){
+                        echo "<table class=\"tablaphp\">";
+                        echo    "<tr>";
+                                
+                        echo       "<th>Instrumento</th>";
+                        echo       "<th>Familia</th>";
+                        echo       "<th>Ubicaci&oacute;n</th>";
+                        echo       "<th>Unidades</th>";
+                        echo       "<th>A&ntilde;o de adquisici&oacute;n</th>";
+                        echo       "<th colspan='2'>Administrar</th>";
+                        echo   "</tr>";
+                        echo    "<tr>"; 
+                        echo       "<td>" . htmlspecialchars($row['dispositivo_acustico']) . "</td>";
+                        echo       "<td>" . htmlspecialchars($row['familia']) . "</td>";
+                        echo       "<td>" . htmlspecialchars($row['ubicacion']) . "</td>";
+                        echo       "<td>" . htmlspecialchars($row['unidades']) . "</td>";
+                        echo       "<td>" . htmlspecialchars($row['anyo_de_adquisicion']) . "</td>";
+                        echo  "<form action='controlador.php' method='post'>";
+                        echo "<input type='hidden' name=id_instrumeto value='" . htmlspecialchars($row['id_instrumento']) . " /'>";
+                        echo       "<td>" . "<button class='botonadminstrainventarioeditaryeliminar' name='botonadminstrainventarioeditaryeliminar' type='submit' value='eliminar'>Editar</button>" ."</td>";
+                        echo       "<td>" . "<button class='botonadminstrainventarioeditaryeliminar' name='botonadminstrainventarioeditaryeliminar' type='submit' value='editar'>Eliminar</button>" . "</td>";
+                        echo  "</form>";  
+                        echo    "</tr>";                                
+                        echo "</table>";
+                }
+                } else {
+                      echo "<table class=\"tablaphp\">";
+                        echo    "<tr>";
+                                
+                        echo       "<th>Instrumento</th>";
+                        echo       "<th>Familia</th>";
+                        echo       "<th>Ubicaci&oacute;n</th>";
+                        echo       "<th>Unidades</th>";
+                        echo       "<th>A&ntilde;o de adquisici&oacute;n</th>";
+                        echo       "<th colspan='2'>Administrar</th>";
+                        echo   "</tr>";
+                        echo    "<tr>"; 
+                        echo       "<td colspan='7'>No hay datos </td>";
+                        
+                        echo    "</tr>";
+                                
+                        echo "</table>";
+                }
+              ?>   
                         </tr>
                       
                     </table>
-              </form>  
            </div>     
         </main>
         <footer>    

@@ -1,5 +1,12 @@
 <?php
-    require  __DIR__ .  "/conexion.php";
+    session_start();
+    $rolpermetidoformulariocontacto = ["admin"];
+    if (!isset($_SESSION['rol'] | $_SESSION['rol'] !== 'admin' )){
+        session_unset();
+        session_destroy()
+        header("Location: login_bandeja_contacto.php");
+        exit(); 
+    }
 ?>
 <!DOCTYPE html>
     <html>
@@ -24,25 +31,27 @@
                 <li><a href="login_formulario_inventario.php">Formulario de inventarioo</a></li>
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="#">Contacto</a></li>
+                <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+
              </ul>
            </nav>
            <header>
               <h2>Formulario contacto</h2>
            </header>
             <main>
-                <form action="controlador.php" method="post">
+                <form action="controladorformularionoticias.php" method="post">
                     <div class="grindclass2">  
-                        <label for="email">Email:</label>
+                        <label for="emailcontacto">Email:</label>
 
-                        <input type="text" id="email" name="email" required>
+                        <input type="text" id="emailcontacto" name="emailcontacto" required>
 
-                        <label  for="asunto">Asunto:</label> 
+                        <label  for="asuntocontacto">Asunto:</label> 
             
-                        <input type="text" id="asunto" name="asunto" required>
+                        <input type="text" id="asuntocontacto" name="asuntocontacto" required>
                         
                     
                         <label for="enviartexto">Enviar texto:</label>
-                        <textarea id="enviartextos"></textarea>
+                        <textarea id="enviartextos" name="enviartextos"></textarea>
                     </div>
                     <button class="botonparaenviarcontacto" type="submit">Enviar</button>
         

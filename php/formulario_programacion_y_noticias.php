@@ -41,6 +41,8 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="#">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>
+                <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+
              </ul>
            </nav>
            <header>

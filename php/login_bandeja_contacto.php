@@ -1,10 +1,14 @@
-
+<?php
+    require __DIR__. "/conexion.php";
+?>
+<?php
+?>
 <!DOCTYPE html>
     <html>
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="../validaciones_formulatio_login_inventario.js" defer></script>
+            <script src="../validaciones_login_contacto.js" defer></script>
             <link  rel="stylesheet" href="../estilos.css">
             <title>Login Formulario Inventario</title>
         </head>
@@ -12,28 +16,29 @@
            <nav>
              <ul>   
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a><li>
-                <li><a href="login_inventario.php">Inventario</a></li>
-                <li><a href="#">Formulario de inventario</a></li>
+                <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
+                <li><a href="#">Inventario</a></li>
+                <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>
-                <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+                <li><a href="#">Bandeja Contacto</a></li>
 
              </ul>
            </nav>
            <header>
-              <h2>Login Formulario de Inventario</h2>
+              <h2>Login bandeja contacto</h2>
+
            </header>
            <main>
-                <form action="controladorinvetario.php" method="post">
+                <form action="controladorlogincontacto.php" method="post">
                     <div class="grindclass">  
-                        <label for="usuariologinformularioinventario">Usuario:</label>
+                        <label for="usuarioicontacto">Usuario:</label>
 
-                        <input type="text" id="usuariologinformularioinventario" name="usuariologinformularioinventario"  pattern="^[A-Z0-9]{9}$" minlength="9" maxlength="9"  required>
+                        <input type="text" id="usuarioicontacto" name="usuarioicontacto"  pattern="^[A-Z0-9]{9}$" minlength="9" maxlength="9"  required>
                        
-                        <label  for="contrasenaloginformularioinventario">Contrase&ntilde;a:</label> 
+                        <label  for="contrasenacontacto">Contrase&ntilde;a:</label> 
             
-                        <input type="password" id="contrasenaloginformularioinventario" name="contrasenaloginformularioinventario" minlength="8" required>
+                        <input type="password" id="contrasenacontacto" name="contrasenacontacto" minlength="8" required>
                        
                     </div><br>
                     <button class="botonparaenviarlogin" type="submit">Enviar</button>
@@ -46,4 +51,4 @@
             </footer>
         </body>
 
-    </html>    
+    </html>               

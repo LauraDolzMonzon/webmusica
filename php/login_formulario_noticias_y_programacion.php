@@ -23,7 +23,9 @@
                 <li><a href="login_inventario.php">Inventario</a></li>
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="#">Formulario de noticias y formulario de programaci&oacute;n</a></li>
-                <li><a href="formulario_contacto.php">Contacto</a></li>                
+                <li><a href="formulario_contacto.php">Contacto</a></li>   
+                <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+
             </ul>
           </nav>
           <header>
@@ -45,7 +47,6 @@
               <button class="botonparaenviarlogin" type="submit">Enviar</button>
 
           </form>
-            <a href="formulario_programacion_y_noticias.php">Enlace provisional para entrar al formulario de Noticias y Programaci&oacute;n, porque todavía no hay PHP</a>
           </main>
           <footer>
                  <h4>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n.</h4>
