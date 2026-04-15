@@ -11,10 +11,14 @@
         $sqlinvetariolistado = "SELECT dispositivo_acustico, familia, ubicacion, anyo_de_adquisicion, unidades FROM instrumento  ORDER by dispositivo_acustico DESC";
     
         $resultadoinvetario = $conn->query($sqlinvetariolistado);
-    if (!isset($_SESSION['dni'])){
-    header("Location: login_inventario.php");
-    exit;
-}
+        $roles_permitidos_ivnetario = ["admin", "profesor"];
+        if (!isset($_SESSION['rol']) || !in_array($_SESSION['rol'], $roles_permitidos_ivnetario) ){
+            session_unset();
+            session_destroy();
+            header("Location: login_bandeja_contacto.php");
+            exit(); 
+        }
+   
 ?>
 <!DOCTYPE html>
   <html>

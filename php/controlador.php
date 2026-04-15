@@ -11,12 +11,13 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dniusuarioinventario = trim($_POST['usuarioinventario']);
     $contrasenainventario = trim($_POST['contrasenainventario']);
+    $rolespermitido = ['admin', 'profesor'];
    
-    $sql = "SELECT * FROM profesor WHERE dni = '$dniusuarioinventario' AND contrasenya = '$contrasenainventario'";
+    $sql = "SELECT  dni, contrasenya, rol FROM profesor WHERE dni = '$dniusuarioinventario' AND contrasenya = '$contrasenainventario'";
     $resultado = mysqli_query($conn, $sql);
     if ($resultado && mysqli_num_rows($resultado) === 1){
        $fila = mysqli_fetch_assoc($resultado);
-       if ($fila['contrasenya'] === $contrasenainventario) {
+       if ($fila['contrasenya'] === $contrasenainventario && $fila['rol'] == in_array($fila['rol'], $rolespermitido)) {
             session_regenerate_id(true);
             $_SESSION['dni'] = $fila['dni'];
             $_SESSION['rol'] = $fila['rol'];

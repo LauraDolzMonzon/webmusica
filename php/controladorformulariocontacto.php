@@ -12,8 +12,9 @@
         $emailcontacto = trim($_POST['emailcontacto']);
         $asuntocontacto = trim($_POST['asuntocontacto']);
         $enviartextos = trim($_POST['enviartextos']);
-        $sqlcontatoformulario = "INSERT INTO contacto (email, asunto, texto_contenido) 
-        VALUES ('$emailcontacto', '$asuntocontacto', '$enviartextos')";
+        $dni_conacto = '00000000A';
+        $sqlcontatoformulario = "INSERT INTO contacto (email, asunto, texto_contenido, dni_profesor_contacto) 
+        VALUES ('$emailcontacto', '$asuntocontacto', '$enviartextos', '$dni_conacto')";
         if (mysqli_query($conn, $sqlcontatoformulario)){
             echo "<script>alert('Email enviado'); window.location.href = 'formulario_contacto.php'</script>"; 
         } else {
