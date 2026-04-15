@@ -24,7 +24,9 @@
             echo "<script>alert('instrumeto no guardado o error " . $con->error . "'); window.location.href = 'formulario_inventario.php'; </script>";
           }
     }
-    if (!isset($_POST['botonadminstrainventarioeditaryeliminar']))
+    if (!isset($_POST['botonadminstrainventarioeditaryeliminar'])){
+      $id_instrumeto = $_SESSION['']
+    }
  }
    $conn->close();
 

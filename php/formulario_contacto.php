@@ -1,13 +1,4 @@
-<?php
-    session_start();
-    $rolpermetidoformulariocontacto = ["admin"];
-    if (!isset($_SESSION['rol'] | $_SESSION['rol'] !== 'admin' )){
-        session_unset();
-        session_destroy()
-        header("Location: login_bandeja_contacto.php");
-        exit(); 
-    }
-?>
+
 <!DOCTYPE html>
     <html>
         <head>
@@ -39,7 +30,7 @@
               <h2>Formulario contacto</h2>
            </header>
             <main>
-                <form action="controladorformularionoticias.php" method="post">
+                <form action="controladorformulariocontacto.php" method="post">
                     <div class="grindclass2">  
                         <label for="emailcontacto">Email:</label>
 
