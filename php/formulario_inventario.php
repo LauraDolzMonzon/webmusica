@@ -96,30 +96,42 @@
               <?php   
                 if ($resultadoinvetarioformulario->num_rows > 0){
                     while($row = $resultadoinvetarioformulario->fetch_assoc()){
-                        echo "<table class=\"tablaphp\">";
-                        echo    "<tr>";
-                                
-                        echo       "<th>Instrumento</th>";
-                        echo       "<th>Familia</th>";
-                        echo       "<th>Ubicaci&oacute;n</th>";
-                        echo       "<th>Unidades</th>";
-                        echo       "<th>A&ntilde;o de adquisici&oacute;n</th>";
-                        echo       "<th colspan='2'>Administrar</th>";
-                        echo   "</tr>";
-                        echo    "<tr>"; 
-                        echo       "<td>" . htmlspecialchars($row['dispositivo_acustico']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['familia']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['ubicacion']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['unidades']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['anyo_de_adquisicion']) . "</td>";
-                        echo  "<form action='controlador.php' method='post'>";
-                        echo "<input type='hidden' name=id_instrumeto value='" . htmlspecialchars($row['id_instrumento']) . " /'>";
-                        echo       "<td>" . "<button class='botonadminstrainventarioeditaryeliminar' name='botonadminstrainventarioeditaryeliminar' type='submit' value='eliminar'>Editar</button>" ."</td>";
-                        echo       "<td>" . "<button class='botonadminstrainventarioeditaryeliminar' name='botonadminstrainventarioeditaryeliminar' type='submit' value='editar'>Eliminar</button>" . "</td>";
-                        echo  "</form>";  
-                        echo    "</tr>";                                
+                        echo "<table class='tablaphp'>";
+                        echo "<tr>";
+                        echo "<th>Instrumento</th>";
+                        echo "<th>Familia</th>";
+                        echo "<th>Ubicación</th>";
+                        echo "<th>Unidades</th>";
+                        echo "<th>Año de adquisición</th>";
+                        echo "<th colspan='2'>Administrar</th>";
+                        echo "</tr>";
+                        echo "<tr>";
+
+                        echo "<td>" . htmlspecialchars($row['dispositivo_acustico']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['familia']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['ubicacion']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['unidades']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['anyo_de_adquisicion']) . "</td>";
+
+                        echo "<td>";
+                        echo "<form action='controladorformularioinventario.php' method='post'>";
+                        echo "<input type='hidden' name='id_instrumento' value='" . htmlspecialchars($row['id_instrumento']) . "'>";
+                        echo "<button class='botonadminstrainventarioeditaryeliminar' name='accion' value='eliminar' type='submit'>Eliminar</button>";
+                        echo "</form>";
+                        echo "</td>";
+
+                        echo "<td>";
+                        echo "<form action='formulario_inventario.php' method='post'>";
+                        echo "<input type='hidden' name='id_instrumento' value='" . htmlspecialchars($row['id_instrumento']) . "'>";
+                        echo "<button class='botonadminstrainventarioeditaryeliminar' name='accion' value='editar' type='submit'>Editar</button>";
+                        echo "</form>";
+                        echo "</td>";
+
+                        echo "</tr>";
+                        
+
                         echo "</table>";
-                }
+                    }
                 } else {
                       echo "<table class=\"tablaphp\">";
                         echo    "<tr>";

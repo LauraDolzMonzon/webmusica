@@ -8,6 +8,8 @@
     if ($conn->connect_error){
         die ("error de conexion" . $conn->connect_error);
     }
+ 
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       if (isset($_POST['formularioinvetariopricipal'])){
           $Intrumetroivenatario = trim($_POST['Intrumetroivenatario']);
@@ -21,19 +23,28 @@
           if(mysqli_query($conn, $sqlcontroladorformularioinvetario)){
             echo "<script>alert('Instumeto guardado'); window.location.href = 'formulario_inventario.php'; </script>";
           } else{
-            echo "<script>alert('instrumeto no guardado o error " . $con->error . "'); window.location.href = 'formulario_inventario.php'; </script>";
+            echo "<script>alert('instrumeto no guardado o error " . $conn->error . "'); window.location.href = 'formulario_inventario.php'; </script>";
           }
     }
-   // if (!isset($_POST['botonadminstrainventarioeditaryeliminar'])){
-    //  $id_instrumeto = $_SESSION['id_instrumento'];
-     // $accion = $_POST['accion'];
-     // if ($accion = ['eliminar'];){
-      //  $sql = "DELETE FROM instrumento WHERE id_instrumento = $id_instrumento";
+    if (isset($_POST['accion']) && $_POST['accion'] == 'eliminar') {
+
+        $id_instrumento = $_POST['id_instrumento'];
+        if (isset($id_instrumento) && is_numeric($id_instrumento)){
+        
+          $sqleliminar = "DELETE FROM instrumento WHERE id_instrumento = $id_instrumento";
+          if (mysqli_query($conn, $sqleliminar)){
+             echo "<script>alert('Instrumento eliminado correctamente'); window.location.href = 'formulario_inventario.php';</script>";
+                } else {
+                    echo "<script>alert('Error al eliminar el instrumento: " . $conn->error . "'); windows.location.href = 'formulario_inventario.php';</script>";
+          }
+        }
 
       }
+        if (isset($_POST['accion']) && $_POST['accion'] == 'editar') {
 
-    //}
-// }
-   $conn->close();
+        }
+  
+   }
+$conn->close();
 
 ?>

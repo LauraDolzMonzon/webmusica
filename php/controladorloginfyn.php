@@ -8,6 +8,17 @@
   if ($conn->connect_error){
     die ("error de conexion" . $conn->connect_error);
   }
+    $usuariologin_fynvalicionphp = trim($_POST['usuario']);
+    $contrasenyaologin_fynvalicionphp = trim($_POST['contrasenya']);
+  if (empty($usuariologin_fynvalicionphp)){
+    $erroresvaliciones[] = "El usuario no puede esta vacido controladorloginfyn";
+  }
+  if (!preg_match('/^[A-Z0-9]{9}$/', $usuariologin_fynvalicionphp)){
+     $erroresvaliciones[] = "Se requiere 8 números y una letra mayúscula controladorloginfyn ";
+  }
+  if (strlen($contrasenyaologin_fynvalicionphp) < 8){
+    $erroresvaliciones[] = "Se requiere como mínimo 8 caracteres controladorloginfyn";
+  }
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $usuariofyp = trim($_POST['usuariofyp']);
     $contrasenafyp = trim($_POST['contrasenafyp']);

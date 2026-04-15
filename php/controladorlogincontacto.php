@@ -8,6 +8,18 @@
   If ($conn->connect_error) {
     die("error de conexion" . $conn->connect_error);
   }
+  
+    $usuariologin_contactovalicionphp = trim($_POST['usuario']);
+    $contrasenyaologin_contactovalicionphp = trim($_POST['contrasenya']);
+  if (empty($usuariologin_contactovalicionphp)){
+    $erroresvaliciones[] = "El usuario no puede esta vacido controladorlogincontacto";
+  }
+  if (!preg_match('/^[A-Z0-9]{9}$/', $usuariologin_contactovalicionphp)){
+     $erroresvaliciones[] = "Se requiere 8 números y una letra mayúscula controladorlogincontacto";
+  }
+  if (strlen($contrasenyaologin_contactovalicionphp) < 8){
+    $erroresvaliciones[] = "Se requiere como mínimo 8 caracteres controladorlogincontacto";
+  }
   if ($_SERVER['REQUEST_METHOD'] === "POST"){
     $usuarioicontacto = trim($_POST['usuarioicontacto']);
     $contrasenacontacto = trim($_POST['contrasenacontacto']);

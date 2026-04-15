@@ -8,6 +8,17 @@
     if ($conn->connect_error){
         die ("error de conexion" . $conn->connect_error);
     }
+  $usuariologin_invetariovalicionphp = trim($_POST['usuario']);
+    $contrasenyaologin_invetariovalicionphp = trim($_POST['contrasenya']);
+  if (empty($usuariologin_invetariovalicionphp)){
+    $erroresvaliciones[] = "El usuario no puede esta vacido controlador";
+  }
+  if (!preg_match('/^[A-Z0-9]{9}$/', $usuariologin_invetariovalicionphp)){
+     $erroresvaliciones[] = "Se requiere 8 números y una letra mayúscula controlador";
+  }
+  if (strlen($contrasenyaologin_invetariovalicionphp) < 8){
+    $erroresvaliciones[] = "Se requiere como mínimo 8 caracteres controlador";
+  }   
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dniusuarioinventario = trim($_POST['usuarioinventario']);
     $contrasenainventario = trim($_POST['contrasenainventario']);
