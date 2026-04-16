@@ -13,6 +13,21 @@
         $asuntocontacto = trim($_POST['asuntocontacto']);
         $enviartextos = trim($_POST['enviartextos']);
         $dni_conacto = '00000000A';
+        $erroresvalicionesformulariocontratos = [];
+        if (empty($emailcontacto)){
+            $erroresvalicionesformulariocontratos = "no se puede dejar el email vacido";
+        }
+        if (empty($asuntocontacto)){
+            $erroresvalicionesformulariocontratos = "no se puede dajar el asunto vacido";
+        }
+        if (empty($enviartextos)){
+            $erroresvalicionesformulariocontratos = "no se puede dejar el texto vacido";
+        }
+        if (!empty($erroresvalicionesformulariocontratos)){
+            echo "<script>window.history.back();</script>";
+            exit();
+        }
+
         $sqlcontatoformulario = "INSERT INTO contacto (email, asunto, texto_contenido, dni_profesor_contacto) 
         VALUES ('$emailcontacto', '$asuntocontacto', '$enviartextos', '$dni_conacto')";
         if (mysqli_query($conn, $sqlcontatoformulario)){

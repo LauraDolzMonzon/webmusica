@@ -35,9 +35,9 @@
                 <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
                 <li><a href="login_inventario.php">Inventario</a></li>
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
-                <li><a href="#">Formulario de noticias y formulario de programaci&oacute;n</a></li>
+                <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>
-                <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+                <li><a href="#.php">Bandeja Contacto</a></li>
 
              </ul>
             </nav> 
@@ -61,6 +61,17 @@
                         echo "<tr>";
                         echo "<table>";
                     }
+                  } else {
+                      echo "<table class='tablaphp'>";
+                        echo "<tr>";
+                        echo "<td>Email</td>";
+                        echo "<td>Asunto</td>";
+                        echo "<td>Contenido</td>";
+                        echo "<tr>";
+                        echo "<td colspan='3'>No hay datos </td>";
+                        echo "</tr>";
+                        echo "<table>";
+
                   }
                 
                 ?>

@@ -28,9 +28,40 @@
     if (isset($_POST['botonparaenviarprogramacion'])){
        $nivel = trim($_POST['nivel']);
        $ano = trim($_POST['ano']);
-       if(empty($_POST['dni_profesor_todos'])){
-          echo "<script>alert('Selecciona un profesor'); window.history.back();</script>";
-          exit();
+       $erroresvaliciones = [];
+        if(empty($_POST['dni_profesor_todos'])){
+            echo "<script>alert('Selecciona un profesor'); window.history.back();</script>";
+            exit();
+        }
+        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
+
+        if (empty($nivel)){
+            $erroresvaliciones[] = "Debe rellenar el campo nivel";
+        }
+
+        if (empty($ano)){
+            $erroresvaliciones[] = "Debe rellenar el campo año";
+        }
+
+        if (empty($_FILES['archivo']['name'])){
+            $erroresvaliciones[] = "Debe seleccionar un archivo PDF";
+        } else {
+          $extension = strtolower(pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION));
+
+          if ($extension !== 'pdf'){
+                  $erroresvaliciones[] = "Solo se admite formato PDF";
+              }
+              $tipoMine = mime_content_type($_FILES['archivo']['tmp_name']);
+                  if ($tipoMine !== 'application/pdf'){
+                  $erroresvaliciones[] = "El archivo debe ser un PDF válido";
+              }
+              if (!empty($erroresvaliciones)){
+                echo "<script>window.history.back();</script>";
+                exit();
+              }
+              
+        
+       
        }
        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];       
 

@@ -7,22 +7,31 @@
     $conn = new mysqli($servidor, $usuario, $contrasenna, $basededatos);
     if ($conn->connect_error){
     die("error de conexion" . $conn->connect_error);
-    $usuariologin_iventarioformulariovalicionphp = trim($_POST['usuario']);
-    $contrasenyaologin_iventarioformulariovalicionphp = trim($_POST['contrasenya']);
-  if (empty($usuariologin_iventarioformulariovalicionphp)){
-    $erroresvaliciones[] = "El usuario no puede esta vacido controladorinvetario";
-  }
-  if (!preg_match('/^[A-Z0-9]{9}$/', $usuariologin_iventarioformulariovalicionphp)){
-     $erroresvaliciones[] = "Se requiere 8 números y una letra mayúscula controladorinvetario";
-  }
-  if (strlen($contrasenyaologin_iventarioformulariovalicionphp) < 8){
-    $erroresvaliciones[] = "Se requiere como mínimo 8 caracteres controladorinvetario";
-  }
+   
     }
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
       $usuariologinformularioinventario = trim($_POST['usuariologinformularioinventario']);
       $contrasenaloginformularioinventario = trim($_POST['contrasenaloginformularioinventario']);
-      
+      $erroresvalicioneslogininvetario = [];
+
+       if (empty($usuariologinformularioinventario)){
+        $erroresvalicioneslogininvetario[] = "El usuario no puede esta vacido ";
+      }
+      if (!preg_match('/^[A-Z0-9]{9}$/', $usuariologinformularioinventario)){
+        $erroresvalicioneslogininvetario[] = "Se requiere 8 números y una letra mayúscula ";
+      }
+      if (strlen($contrasenaloginformularioinventario) < 8){
+        $erroresvalicioneslogininvetario[] = "Se requiere como mínimo 8 caracteres ";
+      }
+      if (!empty($erroresvalicioneslogininvetario)){
+          echo "<script>window.history.back();</script>";
+          exit();
+      }if (!empty($erroresvalicioneslogininvetario)){
+       echo "<script>window.history.back();</script>";
+       exit();
+      }
+        
+              
      
       $sql3 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuariologinformularioinventario'";
       $resultado3 = mysqli_query($conn, $sql3);

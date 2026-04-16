@@ -51,8 +51,7 @@
             <h3 class="h3nyp">Noticias</h3>
             <div> 
               <?php
-                if ($resultadostablanoticias->num_rows > 0){
-                    while($row = $resultadostablanoticias->fetch_assoc()) {   
+                
                         echo  "<table class=\"tablaphp\">";
                         echo     "<tr>";
                         echo        "<th>Fecha</th>";
@@ -60,6 +59,8 @@
                         echo        "<th>Lugar</th>";
                         echo         "<th>Texto</th>";
                         echo     "</tr>";
+                    if ($resultadostablanoticias->num_rows > 0){
+                    while($row = $resultadostablanoticias->fetch_assoc()) {   
                         echo     "<tr>";
                         echo        "<td>" . htmlspecialchars($row['fecha']) . "</td>";
                         echo        "<td>" . htmlspecialchars($row['titulo_noticia']) . "</td>";
@@ -86,8 +87,9 @@
 
 
             </div>  
-            <h3 class="h3nyp">Programaci&oacute;n</h3>  
             <div>
+                 <h3 class="h3nyp">Programaci&oacute;n</h3>  
+
                 <?php
                     if ($resultadostablaprogramacion->num_rows > 0){
                       while ($row = $resultadostablaprogramacion->fetch_assoc()) {
