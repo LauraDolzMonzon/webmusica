@@ -75,6 +75,7 @@
                             <option value="sinespecificarubicacion">Sinespecificarubicacion</option>
                             <option value="RMU1">RMU1</option>
                             <option value="RMU2">RMU2</option>
+                            <option value="En varias aulas">En varias aulas</option> 
                         </select>
                     </td>
                     <td><input type="text" id="invetariounidades" name="invetariounidades" pattern="^[0-9]+$" required> </td> 
