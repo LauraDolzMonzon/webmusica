@@ -17,6 +17,21 @@
         $lugar = trim($_POST['lugar']);
         $textoprogamacion = trim($_POST['textoprogamacion']);
         $dni_prfosesor = $_SESSION['dni'];
+        $erroresvalicionesnoticias = [];
+
+        if (strlen($lugar) < 8){
+          $erroresvalicionesnoticias[] = "Se requiere como mínimo 5 caracteres ";
+          }
+        if (strlen($noticainventario) < 8){
+           $erroresvalicionesnoticias[] = "Se requiere como mínimo 8 caracteres ";
+          }
+         if (strlen($textoprogamacion) < 8){
+             $erroresvalicionesnoticias[] = "Se requiere como mínimo 8 caracteres ";
+        }
+             
+                      
+
+
         $sqlnoticias = "INSERT INTO noticia (titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia)
         VALUES ('$noticainventario', '$Fechainventario', '$lugar', '$textoprogamacion', '$dni_prfosesor')";
         if(mysqli_query($conn, $sqlnoticias)){
@@ -28,6 +43,8 @@
     if (isset($_POST['botonparaenviarprogramacion'])){
        $nivel = trim($_POST['nivel']);
        $ano = trim($_POST['ano']);
+       $nivel = trim($_POST['nivel']);
+
        $erroresvaliciones = [];
         if(empty($_POST['dni_profesor_todos'])){
             echo "<script>alert('Selecciona un profesor'); window.history.back();</script>";
@@ -42,6 +59,13 @@
         if (empty($ano)){
             $erroresvaliciones[] = "Debe rellenar el campo año";
         }
+         if (strlen($nivel) < 8){
+          $erroresvaliciones[] = "Se requiere como mínimo 8 caracteres ";
+          }
+          
+         if (!preg_match('/^[0-9]{4}$/', $ano)){
+            $erroresvaliciones[] = "Se requiere 4 números ";
+         }
 
         if (empty($_FILES['archivo']['name'])){
             $erroresvaliciones[] = "Debe seleccionar un archivo PDF";
@@ -77,7 +101,7 @@
         $sql_tabla_intermedeia = "INSERT INTO tabla_profesor_programacion (dni_profesor_intermedio, id_programacion_intermedio)
         VALUES ('$dni_prfosesor_programacion', '$id_programacion_intermedio')";
         if(mysqli_query($conn, $sql_tabla_intermedeia)) {
-           echo "<script>alert('Programacion guardara');  window.location.href='formulario_programacion_y_noticias.php';</script>";
+          echo "<script>alert('Programacion guardara');  window.location.href='formulario_programacion_y_noticias.php';</script>";
         } else{  
 
           $error = addslashes($conn->error);
@@ -86,7 +110,7 @@
                  
                 </script>";
                   
-                
+              
         }       
       }
     }  

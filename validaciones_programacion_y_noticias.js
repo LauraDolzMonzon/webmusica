@@ -35,16 +35,10 @@
                     input10.setCustomValidity("");
                 };
             
-                const inputprofesor = document.getElementById("profesor");
-                inputprofesor.oninvalid = function () {
-                    inputprofesor.setCustomValidity("Solo debe tener letras y más de 3 caracteres");       
-                };
-                inputprofesor.oninput = function () {
-                    inputprofesor.setCustomValidity("");
-                };
+             
                 
 
-                const inputachivo = document.getElementById("achivo");
+                const inputachivo = document.getElementById("archivo");
                 inputachivo.oninvalid = function () {
                     inputachivo.setCustomValidity("Solo permite PDF");       
                 };
