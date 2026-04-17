@@ -19,15 +19,7 @@
         $dni_prfosesor = $_SESSION['dni'];
         $erroresvalicionesnoticias = [];
 
-        if (strlen($lugar) < 8){
-          $erroresvalicionesnoticias[] = "Se requiere como mínimo 5 caracteres ";
-          }
-        if (strlen($noticainventario) < 8){
-           $erroresvalicionesnoticias[] = "Se requiere como mínimo 8 caracteres ";
-          }
-         if (strlen($textoprogamacion) < 8){
-             $erroresvalicionesnoticias[] = "Se requiere como mínimo 8 caracteres ";
-        }
+      
              
                       
 
@@ -44,45 +36,9 @@
        $nivel = trim($_POST['nivel']);
        $ano = trim($_POST['ano']);
        $nivel = trim($_POST['nivel']);
+       $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
 
-       $erroresvaliciones = [];
-        if(empty($_POST['dni_profesor_todos'])){
-            echo "<script>alert('Selecciona un profesor'); window.history.back();</script>";
-            exit();
-        }
-        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
-
-        if (empty($nivel)){
-            $erroresvaliciones[] = "Debe rellenar el campo nivel";
-        }
-
-        if (empty($ano)){
-            $erroresvaliciones[] = "Debe rellenar el campo año";
-        }
-         if (strlen($nivel) < 8){
-          $erroresvaliciones[] = "Se requiere como mínimo 8 caracteres ";
-          }
-          
-         if (!preg_match('/^[0-9]{4}$/', $ano)){
-            $erroresvaliciones[] = "Se requiere 4 números ";
-         }
-
-        if (empty($_FILES['archivo']['name'])){
-            $erroresvaliciones[] = "Debe seleccionar un archivo PDF";
-        } else {
-          $extension = strtolower(pathinfo($_FILES['archivo']['name'], PATHINFO_EXTENSION));
-
-          if ($extension !== 'pdf'){
-                  $erroresvaliciones[] = "Solo se admite formato PDF";
-              }
-              $tipoMine = mime_content_type($_FILES['archivo']['tmp_name']);
-                  if ($tipoMine !== 'application/pdf'){
-                  $erroresvaliciones[] = "El archivo debe ser un PDF válido";
-              }
-              if (!empty($erroresvaliciones)){
-                echo "<script>window.history.back();</script>";
-                exit();
-              }
+       
               
         
        
@@ -114,7 +70,7 @@
         }       
       }
     }  
-  }
+  
 
    $conn->close();
     

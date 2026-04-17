@@ -36,7 +36,7 @@
         <header><h1>Departamento de M&uacute;sica</h1></header>
         <main>
             <div id="div1inicio">
-              <p >Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n</p>
+              <p>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n</p>
             </div>
             <div > 
               <?php    
@@ -70,9 +70,7 @@
                 
                     echo  "</tr>";
                     echo "</table>";
-
               }
-
               ?>  
            </div>     
         </main>

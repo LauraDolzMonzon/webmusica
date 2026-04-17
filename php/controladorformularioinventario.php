@@ -15,6 +15,47 @@
           header("Location: login_formulario_inventario.php");
           exit();
     }
+  function validarInventario() {
+
+    $erroresFormularioInventario = [];
+
+    if (empty($_POST['Intrumetroivenatario'])) {
+        $erroresFormularioInventario[] = "El campo Instrumento no puede estar vacío.";
+    } elseif (!preg_match("/^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/u", $_POST['Intrumetroivenatario'])) {
+        $erroresFormularioInventario[] = "El instrumento solo puede contener letras, espacios y acentos.";
+    }
+
+    $familias_validas = ["sinespecificarfamilia", "vientometral", "vientomadera", "pesucion", "cuerda"];
+    if (empty($_POST['invetariofamilia'])) {
+        $erroresFormularioInventario[] = "Debes seleccionar una familia.";
+    } elseif (!in_array($_POST['invetariofamilia'], $familias_validas)) {
+        $erroresFormularioInventario[] = "La familia seleccionada no es válida.";
+    }
+
+    $ubicaciones_validas = ["sinespecificarubicacion", "RMU1", "RMU2", "En varias aulas"];
+    if (empty($_POST['ivetarioubicacion'])) {
+        $erroresFormularioInventario[] = "Debes seleccionar una ubicación.";
+    } elseif (!in_array($_POST['ivetarioubicacion'], $ubicaciones_validas)) {
+        $erroresFormularioInventario[] = "La ubicación seleccionada no es válida.";
+    }
+
+    if (empty($_POST['invetariounidades'])) {
+        $erroresFormularioInventario[] = "El campo Unidades no puede estar vacío.";
+    } elseif (!preg_match("/^[0-9]+$/", $_POST['invetariounidades'])) {
+        $erroresFormularioInventario[] = "Las unidades deben ser solo números.";
+    }
+
+    if (empty($_POST['invetarioanodeadquision'])) {
+        $erroresFormularioInventario[] = "El campo Año de adquisición no puede estar vacío.";
+    } elseif (!preg_match("/^[0-9]{4}$/", $_POST['invetarioanodeadquision'])) {
+        $erroresFormularioInventario[] = "El año debe tener exactamente 4 números.";
+    }
+
+    return $erroresFormularioInventario;
+}
+
+   
+
     $instrumentoEditar = null;
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -28,7 +69,14 @@
           $ubicacionEditarupdate = ($_POST['ivetarioubicacion']);
           $unidadesupdate = ($_POST['invetariounidades']);
           $invetarioanodeadquision = ($_POST['invetarioanodeadquision']);
-          
+          $erroresFormularioInventario = validarInventario();
+
+          if (!empty($erroresFormularioInventario)) {
+              $_SESSION['erroresFormularioInventario'] = $erroresFormularioInventario;
+              header("Location: formulario_inventario.php");
+              exit();
+          }
+
           $sqlupdate = "UPDATE instrumento SET dispositivo_acustico='$instrumentoEditarupdate', familia='$familiaEditarupdate',  ubicacion='$ubicacionEditarupdate',   unidades='$unidadesupdate',  anyo_de_adquisicion='$invetarioanodeadquision'  WHERE id_instrumento=$id ";
           if ($conn->query($sqlupdate)){
             echo "<script>alert('Instrumento actualizado correctamente'); window.location.href='formulario_inventario.php';</script>"; 
@@ -47,7 +95,14 @@
           $invetarioanodeadquision = trim($_POST['invetarioanodeadquision']);
           $dni_formularioinvetario = $_SESSION['dni'];
           $erroresvaliconesformularioinvetario = [];
-          
+          $erroresFormularioInventario = validarInventario();
+
+          if (!empty($erroresFormularioInventario)) {
+              $_SESSION['erroresFormularioInventario'] = $erroresFormularioInventario;
+              header("Location: formulario_inventario.php");
+              exit();
+          }
+
           
           $sqlcontroladorformularioinvetario ="INSERT INTO instrumento (dispositivo_acustico, familia, ubicacion, unidades, anyo_de_adquisicion, dni_profesor_instrumento)
           VALUES ('$Intrumetroivenatario', '$invetariofamilia', '$ivetarioubicacion', '$invetariounidades', '$invetarioanodeadquision', '$dni_formularioinvetario')";
