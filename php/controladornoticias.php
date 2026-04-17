@@ -8,6 +8,14 @@
     if ($conn->connect_error){
         die("error de conexion" . $conn->connect_error);
     }
+       $rolespermitidofi = ['admin'];
+      if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
+          session_unset();
+          session_destroy();
+          header("Location: login_formulario_inventario.php");
+          exit();
+    }
+    
     
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -17,7 +25,6 @@
         $lugar = trim($_POST['lugar']);
         $textoprogamacion = trim($_POST['textoprogamacion']);
         $dni_prfosesor = $_SESSION['dni'];
-        $erroresvalicionesnoticias = [];
 
       
              

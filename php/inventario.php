@@ -46,65 +46,64 @@
         </nav>
         <header><h2>inventario</h2></header>        
         <main>
-          <div id="idflito"> 
-             <div class="flitoclass">
-
-                <form action="controlador.php" method="post">
-                        <label for="flitofamilia">Filtro familia</label>
-                    
-                        <select name="flitofamilia" id="flitofamilia">
-                            <option value="sinespecificarfamilia">Sin especificar</option>
-                            <option value="vientometal">Viento metal</option>
-                            <option value="vientomadera">Viento madera</option>
-                            <option value="percusion">Percusi&oacute;n</option>
-                            <option value="cuerda">Cuerda</option>
-                        </select>
-                        <button class="botonparaenviarflito" type="submit">Enviar</button>
-
-                    </form>
-                </div>
-                <div class="flitoclass">
-                    <form action="controlador.php"  method="post">  
-                        <label for="flitoubicacion">Filtro aula</label>
-
-                        <select name="flitoubicacion" id="flitoubicacion">
-                            <option value="sinespecificarubicacion">Sin especificar</option>
-                            <option value="RMU1">RMU1</option>
-                            <option value="RMU2">RMU2</option>
-                        </select>
-                        <button class="botonparaenviarflito" type="submit">Enviar</button>
-
-                    </form>
-                    <form action="controlador.php" method="post">
-                        <label for="flitoano">Filtro cantidad</label>
-
-                        <select name="flitoucantidad" id="flitocantidad">
-                            <option value="sinespecificarcantidad">Sin especificar</option>
-                            <option value="accentecandidad">Accente</option>
-                            <option value="seccentecantidad">Deccente</option>
-                        </select>
-                        <button class="botonparaenviarflito" type="submit">Enviar</button>
-
-                    </form>
-                </div>
+            <form action="controlador.php" method="post">
+    
+                <div id="idflito"> 
                     <div class="flitoclass">
-                    <form action="controlador.php" method="post">
-                        <label for="flitoano">Flito a&ntilde;o</label>
 
-                            <select name="flitoano" id="flitoano">
-                                <option value="sinespecificarano">Sin especificar</option>
-                                <option value="accente">Accente</option>
-                                <option value="descente">Descente</option>
-                            </select>
-                            <button class="botonparaenviarflito" type="submit">Enviar</button>
+                                <label for="flitofamilia">Filtro familia</label>
+                            
+                                <select name="flitofamilia" id="flitofamilia">
+                                    <option value="sinespecificarfamilia">Sin especificar</option>
+                                    <option value="vientometal">Viento metal</option>
+                                    <option value="vientomadera">Viento madera</option>
+                                    <option value="percusion">Percusi&oacute;n</option>
+                                    <option value="cuerda">Cuerda</option>
+                                </select>
+                                <button class="botonparaenviarflito" type="submit">Enviar</button>
 
                             
-                            
+                    </div>
+                    <div class="flitoclass">
+                                <label for="flitoubicacion">Filtro aula</label>
 
-                    </form>  
-                </div>    
-            </div>  
-            <div > 
+                                <select name="flitoubicacion" id="flitoubicacion">
+                                    <option value="sinespecificarubicacion">Sin especificar</option>
+                                    <option value="RMU1">RMU1</option>
+                                    <option value="RMU2">RMU2</option>
+                                </select>
+                                <button class="botonparaenviarflito" type="submit">Enviar</button>
+                    </div>        
+                    <div class="flitoclass">
+
+                                <label for="flitoano">Filtro cantidad</label>
+
+                                <select name="flitoucantidad" id="flitocantidad">
+                                    <option value="sinespecificarcantidad">Sin especificar</option>
+                                    <option value="accentecandidad">Accente</option>
+                                    <option value="seccentecantidad">Deccente</option>
+                                </select>
+                                <button class="botonparaenviarflito" type="submit">Enviar</button>
+
+                    </div>
+                    <div class="flitoclass">
+                            <form action="controlador.php" method="post">
+                                <label for="flitoano">Flito a&ntilde;o</label>
+
+                                    <select name="flitoano" id="flitoano">
+                                        <option value="sinespecificarano">Sin especificar</option>
+                                        <option value="accente">Accente</option>
+                                        <option value="descente">Descente</option>
+                                    </select>
+                                    <button class="botonparaenviarflito" type="submit">Enviar</button>
+
+                                    
+                                    
+
+                    </div>  
+                </div > 
+            </form>  
+
               <?php   
                 if ($resultadoinvetario->num_rows > 0){
                     while($row = $resultadoinvetario->fetch_assoc()){
