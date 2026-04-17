@@ -17,6 +17,15 @@
     } 
     $sqlformularoinvetario = "SELECT ubicacion, anyo_de_adquisicion, unidades, familia, dispositivo_acustico, id_instrumento  FROM instrumento ORDER BY dispositivo_acustico ";
     $resultadoinvetarioformulario = $conn->query($sqlformularoinvetario);
+    $instrumentoEditar = null;
+    if (isset($_GET['id_editar'])){
+        $id = intval($_GET['id_editar']);
+        $sql = "SELECT * FROM instrumento WHERE id_instrumento = $id";
+        $resultadodevuelto = $conn->query($sql);
+        if ($resultadodevuelto->num_rows == 1) {
+            $instrumentoEditar = $resultadodevuelto->fetch_assoc();
+        }
+    }
 ?>
 <!DOCTYPE html>
   <html>
@@ -36,7 +45,7 @@
             <ul>   
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
-                <il><a href="login_inventario.php">Inventario</a></li>
+                <li><a href="login_inventario.php">Inventario</a></li>
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>
@@ -48,6 +57,8 @@
         <main>
             <h3>A&ntilde;adir instrumento</h3>
             <form action="controladorformularioinventario.php" method="post">
+                 <input type="hidden" name="id_editar" value="<?php echo $instrumentoEditar['id_instrumento'] ?? ''; ?>">
+
               <table>
                 <tr>
                     <th><label for="Intrumetroivenatario">Instrumento</label></th>
@@ -59,35 +70,37 @@
                     <th><label for="botonadminstrainventario">Enviar</label></th>
                 </tr>
                 <tr>
-                    <td><input type="text" id="Intrumetroivenatario" name="Intrumetroivenatario" pattern="[A-Za-zñÑ]+" required> </td>
+                    <td><input type="text" id="Intrumetroivenatario" name="Intrumetroivenatario" pattern="[A-Za-"^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" value="<?php echo $instrumentoEditar['dispositivo_acustico'] ?? ''; ?>" required > </td>
                
                     <td>
                     
                         <select name="invetariofamilia" id="invetariofamilia" required>
-                            <option value="sinespecificarfamilia">Sinespecificarfamilia</option>
-                            <option value="vientometral">Viento metal</option>
-                            <option value="vientomadera">Viento madera</option>
-                            <option value="pesucion">Percusi&oacute;n</option>
-                            <option value="cuerda">Cuerda</option>
+                            <option value="sinespecificarfamilia" <?php if(($instrumentoEditar['familia'] ?? '')=='sinespecificarfamilia') echo 'selected'; ?>>Sinespecificarfamilia</option>
+                            <option value="vientometral" <?php if(($instrumentoEditar['familia'] ?? '')=='vientometral') echo 'selected'; ?>>Viento metal</option>
+                            <option value="vientomadera" <?php if(($instrumentoEditar['familia'] ?? '' )=='vientomadera') echo 'selected'; ?>>Viento madera</option>
+                            <option value="pesucion" <?php if(($instrumentoEditar['familia'] ?? '' )=='pesucion') echo 'selected'; ?>>Percusi&oacute;n</option>
+                            <option value="cuerda"  <?php if(($instrumentoEditar['familia'] ?? '' )=='cuerda') echo 'selected'; ?>>Cuerda</option>
                         </select> 
                     </td>
                     <td>  <select name="ivetarioubicacion" id="ivetarioubicacion" required>
                             <option value="sinespecificarubicacion">Sinespecificarubicacion</option>
-                            <option value="RMU1">RMU1</option>
-                            <option value="RMU2">RMU2</option>
-                            <option value="En varias aulas">En varias aulas</option> 
+                            <option value="RMU1" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'RMU1') echo 'selected'; ?>>RMU1</option>
+                            <option value="RMU2" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'RMU2') echo 'selected'; ?>>RMU2</option>
+                            <option value="En varias aulas" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'En varias aulas') echo 'selected' ?>>En varias aulas</option> 
                         </select>
                     </td>
-                    <td><input type="text" id="invetariounidades" name="invetariounidades" pattern="^[0-9]+$" required> </td> 
+                    <td><input type="text" id="invetariounidades" name="invetariounidades" pattern="^[0-9]+$"  value="<?php echo $instrumentoEditar['unidades'] ?? ''; ?>" required> </td> 
                     
 
                     
                        
 
-                    <td><input type="date" id="invetarioanodeadquision" name="invetarioanodeadquision" min="1900" max="2100" required> </td>
-                   
+                    <td><input type="text" id="invetarioanodeadquision" name="invetarioanodeadquision"  pattern="^[0-9]{1,4}$"   maxlength="4" value="<?php echo $instrumentoEditar['anyo_de_adquisicion'] ?? ''; ?>" required> </td>
+                    
                     <td><button type="submit" class="botonadminstrainventario" name="formularioinvetariopricipal">Enviar</button></td>
+
                  </tr>  
+
                </table>
                <h3>Administrar instrumentos</h3>
             </form>        
@@ -122,7 +135,7 @@
                         echo "</td>";
 
                         echo "<td>";
-                        echo "<form action='formulario_inventario.php' method='post'>";
+                        echo "<form action='controladorformularioinventario.php' method='post'>";
                         echo "<input type='hidden' name='id_instrumento' value='" . htmlspecialchars($row['id_instrumento']) . "'>";
                         echo "<button class='botonadminstrainventarioeditaryeliminar' name='accion' value='editar' type='submit'>Editar</button>";
                         echo "</form>";
@@ -152,7 +165,7 @@
                         echo "</table>";
                 }
               ?>   
-                        </tr>
+                       
                       
                     </table>
            </div>     

@@ -15,7 +15,7 @@
         if (!isset($_SESSION['rol']) || !in_array($_SESSION['rol'], $roles_permitidos_ivnetario) ){
             session_unset();
             session_destroy();
-            header("Location: login_bandeja_contacto.php");
+            header("Location: login_inventario.php");
             exit(); 
         }
    

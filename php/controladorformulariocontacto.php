@@ -8,6 +8,13 @@
     if ($conn->connect_error){
         die("error de conexion" . $conn->connect_error);
     }
+    $rolpermetidoformulariocontacto = ["admin"];
+    if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' ){
+        session_unset();
+        session_destroy();
+        header("Location: login_bandeja_contacto.php");
+        exit(); 
+    }
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $emailcontacto = trim($_POST['emailcontacto']);
         $asuntocontacto = trim($_POST['asuntocontacto']);

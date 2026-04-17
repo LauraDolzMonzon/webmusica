@@ -8,7 +8,7 @@
     if ($conn->connect_error){
         die("error de conexion" . $conn->connect_error);
     }
- 
+    
 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
       if (isset($_POST['botonparaenviarnoticias'])){

@@ -8,6 +8,7 @@
     if ($conn->connect_error){
         die ("error de conexion" . $conn->connect_error);
     }
+    
   $usuariologin_invetariovalicionphp = trim($_POST['usuario']);
     $contrasenyaologin_invetariovalicionphp = trim($_POST['contrasenya']);
 
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erroresvalicionescontrolador[] = "Se requiere como mínimo 8 caracteres controlador";
       }   
       if (!empty($erroresvalicionescontrolador)){
-          echo "<script>window.history.back();</script>";
+          echo "<script>window.location.href = login_inventari.php';</script>";
           exit();
       }      
     $rolespermitido = ['admin', 'profesor'];

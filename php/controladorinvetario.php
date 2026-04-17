@@ -7,8 +7,9 @@
     $conn = new mysqli($servidor, $usuario, $contrasenna, $basededatos);
     if ($conn->connect_error){
     die("error de conexion" . $conn->connect_error);
+    } 
    
-    }
+    
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
       $usuariologinformularioinventario = trim($_POST['usuariologinformularioinventario']);
       $contrasenaloginformularioinventario = trim($_POST['contrasenaloginformularioinventario']);
