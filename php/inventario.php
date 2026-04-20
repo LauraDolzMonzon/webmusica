@@ -1,16 +1,6 @@
 <?php
         session_start();
-        $servidor = "127.0.0.1";
-        $usuario = "root";
-        $contrasenna = "";
-        $basededatos = "webmusica";
-        $conn = new mysqli($servidor, $usuario, $contrasenna, $basededatos);
-        if ($conn->connect_error){
-            die("error de conexion" . $conn->connect_error);
-        }
-        $sqlinvetariolistado = "SELECT dispositivo_acustico, familia, ubicacion, anyo_de_adquisicion, unidades FROM instrumento  ORDER by dispositivo_acustico DESC";
-    
-        $resultadoinvetario = $conn->query($sqlinvetariolistado);
+       
         $roles_permitidos_ivnetario = ["admin", "profesor"];
         if (!isset($_SESSION['rol']) || !in_array($_SESSION['rol'], $roles_permitidos_ivnetario) ){
             session_unset();
@@ -18,7 +8,7 @@
             header("Location: login_inventario.php");
             exit(); 
         }
-   
+   $resultadoinvetariolistado = $_SESSION['resultado_filtro'] ?? [];
 ?>
 <!DOCTYPE html>
   <html>
@@ -46,7 +36,7 @@
         </nav>
         <header><h2>inventario</h2></header>        
         <main>
-            <form action="controlador.php" method="post">
+            <form action="filtro.php" method="get">
     
                 <div id="idflito"> 
                     <div class="flitoclass">
@@ -54,13 +44,12 @@
                                 <label for="flitofamilia">Filtro familia</label>
                             
                                 <select name="flitofamilia" id="flitofamilia">
-                                    <option value="sinespecificarfamilia">Sin especificar</option>
+                                    <option value="">Sin especificar</option>
                                     <option value="vientometal">Viento metal</option>
                                     <option value="vientomadera">Viento madera</option>
                                     <option value="percusion">Percusi&oacute;n</option>
                                     <option value="cuerda">Cuerda</option>
                                 </select>
-                                <button class="botonparaenviarflito" type="submit">Enviar</button>
 
                             
                     </div>
@@ -68,33 +57,34 @@
                                 <label for="flitoubicacion">Filtro aula</label>
 
                                 <select name="flitoubicacion" id="flitoubicacion">
-                                    <option value="sinespecificarubicacion">Sin especificar</option>
+                                    <option value="">Sin especificar</option>
                                     <option value="RMU1">RMU1</option>
                                     <option value="RMU2">RMU2</option>
+                                    <option value="En varias aulas">En varias aulas</option>
+
                                 </select>
-                                <button class="botonparaenviarflito" type="submit">Enviar</button>
-                    </div>        
+                    </div>     
                     <div class="flitoclass">
+                                <label for="flitounidades">Flito unidades</label>
 
-                                <label for="flitoano">Filtro cantidad</label>
+                                <select name="flitounidades" id="flitounidades">
+                                    <option value="">Sin especificar</option>
+                                    <option value="asc">Accente</option>
+                                    <option value="desc">Descente</option>
 
-                                <select name="flitoucantidad" id="flitocantidad">
-                                    <option value="sinespecificarcantidad">Sin especificar</option>
-                                    <option value="accentecandidad">Accente</option>
-                                    <option value="seccentecantidad">Deccente</option>
                                 </select>
-                                <button class="botonparaenviarflito" type="submit">Enviar</button>
+                    </div>                        
 
-                    </div>
                     <div class="flitoclass">
-                            <form action="controlador.php" method="post">
                                 <label for="flitoano">Flito a&ntilde;o</label>
 
                                     <select name="flitoano" id="flitoano">
-                                        <option value="sinespecificarano">Sin especificar</option>
-                                        <option value="accente">Accente</option>
-                                        <option value="descente">Descente</option>
+                                        <option value="">Sin especificar</option>
+                                        <option value="asc">Accente</option>
+                                        <option value="desc">Descente</option>
                                     </select>
+                    </div>                
+                    <div class="flitoclass">                
                                     <button class="botonparaenviarflito" type="submit">Enviar</button>
 
                                     
@@ -105,44 +95,41 @@
             </form>  
 
               <?php   
-                if ($resultadoinvetario->num_rows > 0){
-                    while($row = $resultadoinvetario->fetch_assoc()){
-                        echo "<table class=\"tablaphp\">";
-                        echo    "<tr>";
-                                
-                        echo       "<th>Instrumento</th>";
-                        echo       "<th>Familia</th>";
-                        echo       "<th>Ubicaci&oacute;n</th>";
-                        echo       "<th>Unidades</th>";
-                        echo       "<th>A&ntilde;o de adquisici&oacute;n</th>";
-                        echo   "</tr>";
-                        echo    "<tr>"; 
-                        echo       "<td>" . htmlspecialchars($row['dispositivo_acustico']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['familia']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['ubicacion']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['unidades']) . "</td>";
-                        echo       "<td>" . htmlspecialchars($row['anyo_de_adquisicion']) . "</td>";
-                        echo    "</tr>";
-                                
-                        echo "</table>";
-                }
+                if (!empty($resultadoinvetariolistado )) {
+                    echo "<table class=\"tablaphp\">";
+                    echo "<tr>
+                            <th>Instrumento</th>
+                            <th>Familia</th>
+                            <th>Ubicación</th>
+                            <th>Unidades</th>
+                            <th>Año de adquisición</th>
+                        </tr>";
+
+                    foreach ($resultadoinvetariolistado  as $row) {
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($row['dispositivo_acustico']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['familia']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['ubicacion']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['unidades']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['anyo_de_adquisicion']) . "</td>";
+                        echo "</tr>";
+                    }
+
+                    echo "</table>";
                 } else {
-                      echo "<table class=\"tablaphp\">";
-                        echo    "<tr>";
-                                
-                        echo       "<th>Instrumento</th>";
-                        echo       "<th>Familia</th>";
-                        echo       "<th>Ubicaci&oacute;n</th>";
-                        echo       "<th>Unidades</th>";
-                        echo       "<th>A&ntilde;o de adquisici&oacute;n</th>";
-                        echo   "</tr>";
-                        echo    "<tr>"; 
-                        echo       "<td colspan='5'>No hay datos </td>";
-                        
-                        echo    "</tr>";
-                                
-                        echo "</table>";
+                    echo "<table class=\"tablaphp\">";
+                    echo "<tr>
+                            <th>Instrumento</th>
+                            <th>Familia</th>
+                            <th>Ubicación</th>
+                            <th>Unidades</th>
+                            <th>Año de adquisición</th>
+                        </tr>";
+                    echo "<tr><td colspan='5'>No hay datos</td></tr>";
+                    echo "</table>";
                 }
+
+
               ?>       
            </div>     
         </main>
