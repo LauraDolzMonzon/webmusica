@@ -8,13 +8,7 @@
     if ($conn->connect_error){
         die("error de conexion" . $conn->connect_error);
     }
-    $rolpermetidoformulariocontacto = ["admin"];
-    if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin' ){
-        session_unset();
-        session_destroy();
-        header("Location: login_bandeja_contacto.php");
-        exit(); 
-    }
+ 
     if ($_SERVER["REQUEST_METHOD"] == "POST"){
         $emailcontacto = trim($_POST['emailcontacto']);
         $asuntocontacto = trim($_POST['asuntocontacto']);
@@ -31,7 +25,7 @@
             $erroresvalicionesformulariocontratos = "no se puede dejar el texto vacido";
         }
         if (!empty($erroresvalicionesformulariocontratos)){
-            echo "<script>window.history.back();</script>";
+            echo "<script>window.location.href = 'formulario_contacto.php'</script>";
             exit();
         }
 
@@ -39,7 +33,7 @@
         VALUES ('$emailcontacto', '$asuntocontacto', '$enviartextos', '$dni_conacto')";
         if (mysqli_query($conn, $sqlcontatoformulario)){
             echo "<script>alert('Email enviado'); window.location.href = 'formulario_contacto.php'</script>"; 
-        } else {
+        } else {http://localhost/php/formulario_contacto.php
            echo "<script>alert('Email no enviado'); window.location.href = 'formulario_contacto.php'</script>";  
         }
 

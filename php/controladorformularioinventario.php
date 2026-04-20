@@ -50,6 +50,8 @@
     } elseif (!preg_match("/^[0-9]{4}$/", $_POST['invetarioanodeadquision'])) {
         $erroresFormularioInventario[] = "El año debe tener exactamente 4 números.";
     }
+    
+    
 
     return $erroresFormularioInventario;
 }

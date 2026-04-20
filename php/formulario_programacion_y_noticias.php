@@ -62,10 +62,10 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                         <input type="date" id="Fechainventario" name="Fechainventario" required>
                         <label  for="lugar">Lugar:</label> 
             
-                        <input type="text" id="lugar" minlength="8" name="lugar" required>
+                        <input type="text" id="lugar" minlength="5" name="lugar" required>
                        
                         <label for="textoprogamacion">Texto:</label>
-                        <textarea id="textoprogamacion" name="textoprogamacion" minlength="10" required></textarea>
+                        <textarea id="textoprogamacion" name="textoprogamacion" minlength="8" required></textarea>
 
                         
                     </div><br>
@@ -91,7 +91,7 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                         </select>
                         <label for="nivel">Curso:</label>
                         <input type="text" id="nivel" name="nivel" required>
-                        <label  for="Ano">A&ntilde;o</label> 
+                        <label  for="ano">A&ntilde;o</label> 
                         <input type="text" id="ano" name="ano"  pattern="[0-9]{4}" minlength="4"  maxlength="4" required>
                         <label for="achivo">Sube el archivo:</label>
                         <input type="file" id="achivo" name="archivo" accept=".pdf" required>                    

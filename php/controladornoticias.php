@@ -25,7 +25,37 @@
         $lugar = trim($_POST['lugar']);
         $textoprogamacion = trim($_POST['textoprogamacion']);
         $dni_prfosesor = $_SESSION['dni'];
+        $erroresvalicionesformularionoticiayp = [];
+      
 
+        if (empty($noticainventario)){
+            $erroresvalicionesformularionoticiayp[] = "no se puede dejar el titulo vacido";
+        }
+        if (empty($Fechainventario)){
+            $erroresvalicionesformularionoticiayp[] = "no se puede dajar la fecha vacido";
+        }
+        if (empty($lugar)){
+            $erroresvalicionesformularionoticiayp[] = "no se puede dejar el profesor vacido";
+        }
+         if (empty($textoprogamacion)){
+            $erroresvalicionesformularionoticiayp[] = "no se puede dejar la ruta vacido";
+
+        }
+         if (strlen($noticainventario) < 5){
+           $erroresvalicionesformularionoticiayp[] = "Se requiere como mínimo 5 caracteres ";
+      }
+        if(strlen($lugar) < 5){
+           $erroresvalicionesformularionoticiayp[] = "Se requiere como mínimo 5 caracteres ";
+        }
+        if (strlen($textoprogamacion) < 8){
+          $erroresvalicionesformularionoticiayp[] = "Se requiere como minimo 8 caracteres";
+        }
+
+
+        if (!empty($erroresvalicionesformularionoticiayp)){
+            echo "<script>window.location.href = 'formulario_programacion_y_noticias.php'</script>";
+            exit();
+        }   
       
              
                       
@@ -42,20 +72,40 @@
     if (isset($_POST['botonparaenviarprogramacion'])){
        $nivel = trim($_POST['nivel']);
        $ano = trim($_POST['ano']);
-       $nivel = trim($_POST['nivel']);
        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
-
-       
-              
-        
-       
-       }
-       $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];       
-
-
-       $nombrearchivo = time() . "_" . basename($_FILES['archivo']['name']);
+         $nombrearchivo = time() . "_" . basename($_FILES['archivo']['name']);
        $ruta = "uploads/" . $nombrearchivo;
        move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta);
+       $erroresvalicionesformularionoticia = [];
+
+             if (empty($nivel)){
+            $erroresvalicionesformularionoticia[] = "no se puede dejar el nivel vacido";
+        }
+        if (empty($ano)){
+            $erroresvalicionesformularionoticia[] = "no se puede dajar el año vacido";
+        }
+        if (empty($dni_prfosesor_programacion)){
+            $erroresvalicionesformularionoticia[] = "no se puede dejar el profesor vacido";
+        }
+        
+         
+      
+      
+      if (!preg_match('/^[0-9]{4}$/', $ano)){
+          $erroresvalicionesformularionoticia[] = "Se requiere 4 caracteres y solo numeros";        
+
+      }
+     
+  
+
+     if (!empty($erroresvalicionesformularionoticia)){
+            echo "<script>window.location.href = 'formulario_programacion_y_noticias.php'</script>";
+            exit();
+        }    
+      
+
+      
+
        
        $sqlprogramacion = "INSERT INTO programacion (anyo, contenido, titulo_programacion)
        VALUES ('$ano', '$ruta', '$nivel')";
@@ -69,7 +119,7 @@
 
           $error = addslashes($conn->error);
           echo "<script>
-                  alert('Programación no guardada o error: $error');
+                  alert('Programación no guardada o error: $error'); window.location.href='formulario_programacion_y_noticias.php';;
                  
                 </script>";
                   
@@ -77,7 +127,8 @@
         }       
       }
     }  
-  
+      
+    }
 
    $conn->close();
     

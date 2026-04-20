@@ -12,13 +12,13 @@
             
                 const input7 = document.getElementById("lugar");
                 input7.oninvalid = function () {
-                        input7.setCustomValidity("Se requiere como mínimo 8 caracteres");       
+                        input7.setCustomValidity("Se requiere como mínimo 5 caracteres");       
                 };
                 input7.oninput = function () {
                         input7.setCustomValidity("");
                 };
-                
-                
+                //
+               
                 const input8 = document.getElementById("textoprogamacion");
                 input8.oninvalid = function () {
                     input8.setCustomValidity("Se requiere como mínimo 8 caracteres");       
@@ -38,7 +38,7 @@
              
                 
 
-                const inputachivo = document.getElementById("archivo");
+                const inputachivo = document.getElementById("achivo");
                 inputachivo.oninvalid = function () {
                     inputachivo.setCustomValidity("Solo permite PDF");       
                 };
