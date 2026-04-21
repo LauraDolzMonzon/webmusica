@@ -71,6 +71,8 @@
                     echo  "</tr>";
                     echo "</table>";
               }
+              $conn->close();
+
               ?>  
            </div>     
         </main>

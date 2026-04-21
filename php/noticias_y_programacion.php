@@ -10,10 +10,18 @@
     }
     $sql4 = "SELECT  titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia FROM noticia ORDER BY fecha DESC";
     $resultadostablanoticias = $conn->query($sql4);
+    if (!$resultadostablanoticias) {
+      die("Error en la consulta de noticias: " . $conn->error);
+    }
+
     $sqlformularioprogramacion = "SELECT programacion.anyo, programacion.contenido, programacion.titulo_programacion, profesor.nombre, profesor.apellido1, profesor.apellido2 FROM programacion LEFT JOIN tabla_profesor_programacion 
     ON programacion.id_programacion = tabla_profesor_programacion.id_programacion_intermedio LEFT JOIN profesor ON tabla_profesor_programacion.dni_profesor_intermedio = profesor.dni ORDER BY programacion.anyo DESC ";
 
     $resultadostablaprogramacion = $conn->query($sqlformularioprogramacion);
+    if (!$resultadostablaprogramacion) {
+      die("Error en la consulta de noticias: " . $conn->error);
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -110,7 +118,7 @@
                         echo         "<td>" . htmlspecialchars($row['nombre']) . "</td>";
                         echo         "<td>" . htmlspecialchars($row['apellido1']) . "</td>";
                         echo         "<td>" . htmlspecialchars($row['apellido2']) . "</td>";
-                        echo         "<td>" . '<a href="' . $row['contenido'] . '" download> <button type="button">Descargar</button> </a>' . "</td>";
+                        echo         "<td>" . '<a href="' . htmlspecialchars($row['contenido']) . '" download> <button type="button">Descargar</button> </a>' . "</td>";
                         echo      "</tr>"; 
                         echo  "</table>";
                       }
@@ -119,7 +127,7 @@
                         echo      "<tr>";
                         echo         "<th>Curso</th>";
                         echo         "<th>A&ntilde;o</th>";
-                        echo         "<th>Programaci&oacute;n</th>";
+                        echo         "<th>Nombre</th>";
                         echo         "<th>Primer apellido</th>";
                         echo         "<th>Segundo apellido</th>";
                         echo         "<th>Programaci&oacute;n</th>";                        
@@ -130,7 +138,7 @@
                         echo      "</tr>"; 
                         echo  "</table>";
                         }
-
+                    $conn->close();
                      
                     ?>      
            
