@@ -14,9 +14,14 @@
     $conn = new mysqli($servidor, $useario, $contrasenna, $basededatos);
     if ($conn->connect_error){
         die("error de conexion" . $conn->connect_error);
+        exit();
     }
     $sqllistadobandejacontacto = "SELECT email, asunto, texto_contenido FROM contacto ORDER BY email";
+    
     $resultadoslistadobandejacontacto = $conn->query($sqllistadobandejacontacto);
+    if (!$resultadoslistadobandejacontacto){
+        die("Error en la consulta: " . $conn->error);
+    }
 ?>
 <!DOCTYPE html>
     <html>
@@ -58,8 +63,8 @@
                         echo "<td>" . htmlspecialchars($filla['email']) . "</td>";
                         echo "<td>" . htmlspecialchars($filla['asunto']) . "</td>";
                         echo "<td>" . htmlspecialchars($filla['texto_contenido']) . "</td>";
-                        echo "<tr>";
-                        echo "<table>";
+                        echo "</tr>";
+                        echo "</table>";
                     }
                   } else {
                       echo "<table class='tablaphp'>";
@@ -79,3 +84,5 @@
             <footer>
                 <h4>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n.</h4>
             </footer>
+        </body>    
+    </html>        

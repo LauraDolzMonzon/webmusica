@@ -7,6 +7,7 @@
   $conn = new mysqli($servidor, $useario, $contrasenna, $basededatos);
   if ($conn->connect_error){
     die ("error de conexion" . $conn->connect_error);
+    exit();
   }
   
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,12 +27,16 @@
       $erroresvalicionesloginfyn[] = "Se requiere como mínimo 8 caracteres ";
     }
     if (!empty($erroresvalicionesloginfyn)){
-       echo "<script>window.history.back();</script>";
+       echo "<script>window.history.href= 'login_formulario_noticias_y_programacion.php';</script>";
        exit();
     }
               
     $sql2 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuariofyp'";
     $resultado2 = mysqli_query($conn, $sql2);
+    if (!$resultado2) {
+      die("Error en la consulta: " . $conn->error);
+    }
+
     if ($resultado2 && mysqli_num_rows($resultado2) === 1) {
         $fila2 = mysqli_fetch_assoc($resultado2);
        if ($fila2['contrasenya'] === $contrasenafyp && $fila2['rol'] === 'admin') {
@@ -46,4 +51,5 @@
 
     exit();  
   }
+$conn->close();  
 ?>

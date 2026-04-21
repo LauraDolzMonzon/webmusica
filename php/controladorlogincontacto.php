@@ -7,6 +7,7 @@
   $conn = new mysqli($servidor, $usuario, $contrasenna, $basededatos);
   If ($conn->connect_error) {
     die("error de conexion" . $conn->connect_error);
+    exit();
   }
   
    
@@ -32,7 +33,12 @@
       }
                   
     $sqlbanderaconctato = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuarioicontacto'";
+    
+
     $resultadobanderaconctato = mysqli_query($conn, $sqlbanderaconctato);
+    if (!$resultadobanderaconctato) {
+      die("Error en la consulta: " . $conn->error);
+    }
     if ($resultadobanderaconctato &&  mysqli_num_rows($resultadobanderaconctato) === 1){
         $filasbandejacontacto = mysqli_fetch_assoc($resultadobanderaconctato);
         if ($filasbandejacontacto['contrasenya'] === $contrasenacontacto && $filasbandejacontacto['rol'] === 'admin'){
@@ -47,4 +53,5 @@
     exit();
     
   }
+  $conn->close();
 ?>

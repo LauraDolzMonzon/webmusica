@@ -8,9 +8,13 @@
     $conn = new mysqli($servidor, $usuario, $contrasenna, $basededadotas);
     if ($conn->connect_error){
         die("Error de conexion" . $conn->connect_error );
+        exit();
     }
     $sqlindex = "SELECT titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia FROM noticia ORDER BY fecha DESC ";
     $resultadoindex = $conn->query($sqlindex);
+    if (!$resultadoindex) {
+        die ("Erro de conexion; " . $conn->connect_error);
+    }
 ?>
 <!DOCTYPE html>
   <html>

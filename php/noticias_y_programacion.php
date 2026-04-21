@@ -20,6 +20,7 @@
     $resultadostablaprogramacion = $conn->query($sqlformularioprogramacion);
     if (!$resultadostablaprogramacion) {
       die("Error en la consulta de noticias: " . $conn->error);
+      exit();
     }
 
 ?>
