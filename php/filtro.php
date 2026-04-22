@@ -41,6 +41,9 @@
 }
     $sql .= " ORDER BY " . implode(", ", $order);   
     $resutadofiltro = $conn->query($sql);
+    if (!$resutadofiltro){
+        die("Error en la consulta: " . $conn->error);
+    }
     $_SESSION['resultado_filtro'] = $resutadofiltro->fetch_all(MYSQLI_ASSOC);
     header("Location: inventario.php?familia=$filtroFamilia&ubicacion=$filtroUbicacion&ano=$filtroano");
     exit();

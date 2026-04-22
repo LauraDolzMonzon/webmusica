@@ -21,10 +21,14 @@
         if (!isset($_SESSION['resultado_filtro'])) {
              $sql = "SELECT dispositivo_acustico, familia, ubicacion, anyo_de_adquisicion, unidades FROM instrumento ORDER BY dispositivo_acustico ASC";
              $resultadoinvetariolistado = $conn->query($sql);
+             if (!$resultadoinvetariolistado) {
+               die("Error en la consulta: " . $conn->error);
+            }
              $instrumentos = $resultadoinvetariolistado->fetch_all(MYSQLI_ASSOC);
 
         } else {
             $instrumentos  = $_SESSION['resultado_filtro'] ?? [];
+            unset($_SESSION['resultado_filtro']);
         }    
 
 ?>
@@ -78,32 +82,32 @@
                                     <option value="">Sin especificar</option>
                                     <option value="RMU1">RMU1</option>
                                     <option value="RMU2">RMU2</option>
-                                    <option value="En varias aulas">En varias aulas</option>
+                                    <option value="Envariasaulas">En varias aulas</option>
 
                                 </select>
                     </div>     
                     <div class="flitoclass">
-                                <label for="flitounidades">Flito unidades</label>
+                                <label for="flitounidades">Filtro  unidades</label>
 
                                 <select name="flitounidades" id="flitounidades">
                                     <option value="">Sin especificar</option>
-                                    <option value="asc">Accente</option>
-                                    <option value="desc">Descente</option>
+                                    <option value="asc">Ascendente</option>
+                                    <option value="desc">Descendente</option>
 
                                 </select>
                     </div>                        
 
                     <div class="flitoclass">
-                                <label for="flitoano">Flito a&ntilde;o</label>
+                                <label for="flitoano">Filtro  a&ntilde;o</label>
 
                                     <select name="flitoano" id="flitoano">
                                         <option value="">Sin especificar</option>
-                                        <option value="asc">Accente</option>
-                                        <option value="desc">Descente</option>
+                                        <option value="asc">Ascendente</option>
+                                        <option value="desc">Descendente</option>
                                     </select>
                     </div>                
                     <div class="flitoclass">                
-                                    <button class="botonparaenviarflito" type="submit">Enviar</button>
+                                    <button id="botonparaenviarflito" type="submit">Enviar</button>
 
                                     
                                     
@@ -111,7 +115,7 @@
                     </div>  
                 </div > 
             </form>  
-
+            <div>
               <?php   
                 if (!empty($instrumentos)) {
                     echo "<table class=\"tablaphp\">";
@@ -146,6 +150,7 @@
                     echo "<tr><td colspan='5'>No hay datos</td></tr>";
                     echo "</table>";
                 }
+              $conn->close();
 
 
               ?>       

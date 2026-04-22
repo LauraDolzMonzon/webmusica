@@ -17,6 +17,9 @@
     } 
     $sqlformularoinvetario = "SELECT ubicacion, anyo_de_adquisicion, unidades, familia, dispositivo_acustico, id_instrumento  FROM instrumento ORDER BY dispositivo_acustico ";
     $resultadoinvetarioformulario = $conn->query($sqlformularoinvetario);
+    if (!$resultadoinvetarioformulario) {
+        die("Error de conexión" .$conn->error );
+    }
     $instrumentoEditar = null;
     if (isset($_GET['id_editar'])){
         $id = intval($_GET['id_editar']);
@@ -70,7 +73,7 @@
                     <th><label for="botonadminstrainventario">Enviar</label></th>
                 </tr>
                 <tr>
-                    <td><input type="text" id="Intrumetroivenatario" name="Intrumetroivenatario" pattern="[A-Za-"^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" value="<?php echo $instrumentoEditar['dispositivo_acustico'] ?? ''; ?>" required > </td>
+                    <td><input type="text" id="Intrumetroivenatario" name="Intrumetroivenatario" pattern="^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" value="<?php echo $instrumentoEditar['dispositivo_acustico'] ?? ''; ?>" required > </td>
                
                     <td>
                     
@@ -164,6 +167,7 @@
                                 
                         echo "</table>";
                 }
+               $conn->close(); 
               ?>   
                        
                       

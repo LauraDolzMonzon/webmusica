@@ -20,7 +20,7 @@
                 <li><a href="#">Inventario</a></li>
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
-                <li><a href="formulario_contacto.`php`">Contacto</a></li>
+                <li><a href="formulario_contacto.php">Contacto</a></li>
                 <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
 
              </ul>

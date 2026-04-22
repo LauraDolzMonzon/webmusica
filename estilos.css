@@ -48,7 +48,7 @@ td, th, tr{
    
 }
 table{
-    border: solid, 2px;
+    border: 2px solid #000;
     width: 50%;
     border-collapse: collapse;
     background-color: var(--color_blanco);
@@ -206,6 +206,15 @@ button{
     background-color: var(--color_blanco);
     border-collapse: collapse;
     
+}
+#botonparaenviarflito{
+   font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+    font-size: 0.85vw;
+    margin-bottom: 20px;
+    margin-top: 13px;
 }
 
 /* #idflito{

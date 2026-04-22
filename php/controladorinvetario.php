@@ -24,6 +24,10 @@
       if (strlen($contrasenaloginformularioinventario) < 8){
         $erroresvalicioneslogininvetario[] = "Se requiere como mínimo 8 caracteres ";
       }
+      if (empty($contrasenaloginformularioinventario)){
+       $erroresvalicioneslogininvetario = "contraseña vacida"; 
+      }
+
     
       if (!empty($erroresvalicioneslogininvetario)){
        echo "<script>window.history.back();</script>";

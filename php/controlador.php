@@ -34,6 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     $sql = "SELECT  dni, contrasenya, rol FROM profesor WHERE dni = '$dniusuarioinventario' AND contrasenya = '$contrasenainventario'";
     $resultado = mysqli_query($conn, $sql);
+    if (!$resultado) {
+      die("Error en la consulta: " . $conn->error);
+    }
     if ($resultado && mysqli_num_rows($resultado) === 1){
        $fila = mysqli_fetch_assoc($resultado);
       if ($fila['contrasenya'] === $contrasenainventario && in_array($fila['rol'], $rolespermitido)) {
