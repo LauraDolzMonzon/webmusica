@@ -33,6 +33,7 @@ a{
    text-decoration: none;
    font-family: Arial, Helvetica, sans-serif;
    margin-inline: 10px;
+   font-size: 1vw;
 }
 
 td, th, tr{
@@ -42,6 +43,9 @@ td, th, tr{
     word-wrap: break-word;
     word-break: break-word;
     white-space: normal;
+    font-size: 1vw;
+
+   
 }
 table{
     border: solid, 2px;
@@ -60,23 +64,33 @@ input{
     margin-bottom: 10px;    
     border-radius: 6px;
     width: 100%;
+    font-size: 0.75vw;
+
 }
+
+
 label{
     font-family: Arial, Helvetica, sans-serif;   
+    font-size: 1vw;
+
 }
 .botonparaenviarlogin{
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
-    margin-top: 35px; 
+    margin-top: 48px; 
+    font-size: 0.85vw;
+
 }
 .botonparaenviarcontacto{
     font-family: Arial, Helvetica, sans-serif;
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
-    margin-top: 55px;
+    margin-top: 60px;
+    font-size: 0.85vw;
+
 }
 .grindclass{ /*Para los formularios de los logins*/
     display: grid;
@@ -89,7 +103,19 @@ label{
 h2, h3, h1{
     margin: 20px;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5vw;
 }
+h3{
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.15vw;
+}
+h2 {
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.35vw;
+}
+
 .grindclass2{ /*para el formulario de concato y de las noticias*/
     display: grid;
     grid-template-columns: 25% 25%;
@@ -107,18 +133,24 @@ textarea{
     overflow: auto;
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
+
 }
 .h3nyp{
     font-family: Arial, Helvetica, sans-serif;
     margin: 20px;
+    font-size: 1vw;
+
 }
 h4, p{
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.90vw;
 }
 .botonadminstrainventario {
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;  
+    font-size: 0.85vw;
+
 }
 .botonparaenviarformularioprogamacionynoticias{
     font-family: Arial, Helvetica, sans-serif;
@@ -126,13 +158,17 @@ h4, p{
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
     margin-top: 80px;
+    font-size: 0.85vw;
+
 }
 .botonparaenviarformularioprogamacionynoticias2{
      font-family: Arial, Helvetica, sans-serif;
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
-    margin-top: 55px;
+    margin-top: 50px;
+    font-size: 0.85vw;
+
 }
 .grindclass4{ /*para el formulario de la programación*/
     display: grid;
@@ -153,6 +189,8 @@ button{
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
+    font-size: 0.85vw;
+
 }  
 #Intrumetroivenatario, #ivetarioubicacion, #invetariofamilia, #invetariounidades, #invetarioanodeadquision{
     width: 90%;
@@ -161,7 +199,7 @@ button{
     outline: none !important;
 }
 .tablaphp {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     border: solid 2px;
     width: 50%;
     border-collapse: collapse;
