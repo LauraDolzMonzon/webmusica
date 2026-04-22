@@ -19,7 +19,7 @@
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
                 <li><a href="login_inventario.php">Inventario</a></li>
-                <li><a href="login_formulario_inventario.php">Formulario de inventarioo</a></li>
+                <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="#">Contacto</a></li>
                 <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
@@ -34,15 +34,15 @@
                     <div class="grindclass2">  
                         <label for="emailcontacto">Email:</label>
 
-                        <input type="text" id="emailcontacto" name="emailcontacto" required>
+                        <input type="email" id="emailcontacto" name="emailcontacto" required>
 
                         <label  for="asuntocontacto">Asunto:</label> 
             
                         <input type="text" id="asuntocontacto" name="asuntocontacto" required>
                         
                     
-                        <label for="enviartexto">Enviar texto:</label>
-                        <textarea id="enviartextos" name="enviartextos"></textarea>
+                        <label for="enviartextos">Enviar texto:</label>
+                        <textarea id="enviartextos" name="enviartextos" required></textarea>
                     </div>
                     <button class="botonparaenviarcontacto" type="submit">Enviar</button>
         

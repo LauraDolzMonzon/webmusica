@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erroresvalicionescontrolador[] = "Se requiere como mínimo 8 caracteres controlador";
       }   
       if (!empty($erroresvalicionescontrolador)){
-          echo "<script>window.location.href = login_inventari.php';</script>";
+          echo "<script>window.location.href = 'login_inventario.php';</script>";
           exit();
       }      
     $rolespermitido = ['admin', 'profesor'];
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = mysqli_query($conn, $sql);
     if ($resultado && mysqli_num_rows($resultado) === 1){
        $fila = mysqli_fetch_assoc($resultado);
-       if ($fila['contrasenya'] === $contrasenainventario && $fila['rol'] && in_array($fila['rol'], $rolespermitido)) {
+      if ($fila['contrasenya'] === $contrasenainventario && in_array($fila['rol'], $rolespermitido)) {
             session_regenerate_id(true);
             $_SESSION['dni'] = $fila['dni'];
             $_SESSION['rol'] = $fila['rol'];
@@ -48,4 +48,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
     
     }
+  $conn->colse();  
 ?>

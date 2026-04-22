@@ -19,7 +19,7 @@
             <ul>   
               
                 <li><a href="index.php">Inicio</a></li>
-                <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a><li>
+                <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
                 <li><a href="login_inventario.php">Inventario</a></li>
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="#">Formulario de noticias y formulario de programaci&oacute;n</a></li>
@@ -29,7 +29,7 @@
             </ul>
           </nav>
           <header>
-            <h2>Login Formulario de Noticias y Programaci&oacute;</h2>
+            <h2>Login Formulario de Noticias y Programaci&oacute;n</h2>
           </header>  
           <main>
             <form action="controladorloginfyn.php" method="post">

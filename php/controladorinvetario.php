@@ -24,10 +24,8 @@
       if (strlen($contrasenaloginformularioinventario) < 8){
         $erroresvalicioneslogininvetario[] = "Se requiere como mínimo 8 caracteres ";
       }
+    
       if (!empty($erroresvalicioneslogininvetario)){
-          echo "<script>window.history.back();</script>";
-          exit();
-      }if (!empty($erroresvalicioneslogininvetario)){
        echo "<script>window.history.back();</script>";
        exit();
       }
@@ -36,6 +34,9 @@
      
       $sql3 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuariologinformularioinventario'";
       $resultado3 = mysqli_query($conn, $sql3);
+      if (!$resultado3) {
+        die("Error en la consulta: " . $conn->error);
+    }
       if ($resultado3 && mysqli_num_rows($resultado3) === 1){
         $fila3 = mysqli_fetch_assoc($resultado3);
         if ($fila3['contrasenya'] === $contrasenaloginformularioinventario && $fila3['rol'] === 'admin'){
@@ -49,4 +50,5 @@
     header("Location: login_formulario_inventario.php");
     exit();
     }
+    $conn->close();
 ?>

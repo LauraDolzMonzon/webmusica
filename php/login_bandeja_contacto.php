@@ -1,6 +1,4 @@
-<?php
-    require __DIR__. "/conexion.php";
-?>
+
 <?php
 ?>
 <!DOCTYPE html>
@@ -10,14 +8,14 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <script src="../validaciones_login_contacto.js" defer></script>
             <link  rel="stylesheet" href="../estilos.css">
-            <title>Login Formulario Inventario</title>
+            <title>Login Bandeja Contacto</title>
         </head>
         <body>
            <nav>
              <ul>   
                 <li><a href="index.php">Inicio</a></li>
                 <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
-                <li><a href="#">Inventario</a></li>
+                <li><a href="login_inventario.php">Inventario</a></li>
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>

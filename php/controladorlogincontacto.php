@@ -7,7 +7,7 @@
   $conn = new mysqli($servidor, $usuario, $contrasenna, $basededatos);
   If ($conn->connect_error) {
     die("error de conexion" . $conn->connect_error);
-    exit();
+   
   }
   
    

@@ -16,25 +16,28 @@
         $dni_conacto = '00000000A';
         $erroresvalicionesformulariocontratos = [];
         if (empty($emailcontacto)){
-            $erroresvalicionesformulariocontratos = "no se puede dejar el email vacido";
+            $erroresvalicionesformulariocontratos[] = "no se puede dejar el email vacido";
         }
         if (empty($asuntocontacto)){
-            $erroresvalicionesformulariocontratos = "no se puede dajar el asunto vacido";
+            $erroresvalicionesformulariocontratos[] = "no se puede dajar el asunto vacido";
         }
         if (empty($enviartextos)){
-            $erroresvalicionesformulariocontratos = "no se puede dejar el texto vacido";
+            $erroresvalicionesformulariocontratos[] = "no se puede dejar el texto vacido";
         }
         if (!empty($erroresvalicionesformulariocontratos)){
-            echo "<script>window.location.href = 'formulario_contacto.php'</script>";
+            echo "<script>window.location.href = 'formulario_contacto.php';</script>";
             exit();
         }
 
         $sqlcontatoformulario = "INSERT INTO contacto (email, asunto, texto_contenido, dni_profesor_contacto) 
         VALUES ('$emailcontacto', '$asuntocontacto', '$enviartextos', '$dni_conacto')";
         if (mysqli_query($conn, $sqlcontatoformulario)){
-            echo "<script>alert('Email enviado'); window.location.href = 'formulario_contacto.php'</script>"; 
-        } else {http://localhost/php/formulario_contacto.php
-           echo "<script>alert('Email no enviado'); window.location.href = 'formulario_contacto.php'</script>";  
+            echo "<script>alert('Email enviado'); window.location.href = 'formulario_contacto.php';</script>";
+            exit(); 
+        } else {
+           echo "<script>alert('Email no enviado'); window.location.href = 'formulario_contacto.php';</script>";  
+           exit();
         }
 
     }
+    $conn->close();    

@@ -16,7 +16,7 @@
         die("error de conexion" . $conn->connect_error);
         exit();
     }
-    $sqllistadobandejacontacto = "SELECT email, asunto, texto_contenido FROM contacto ORDER BY email";
+    $sqllistadobandejacontacto = "SELECT email, asunto, texto_contenido, id_contacto FROM contacto ORDER BY id_contacto DESC";
     
     $resultadoslistadobandejacontacto = $conn->query($sqllistadobandejacontacto);
     if (!$resultadoslistadobandejacontacto){
@@ -78,6 +78,7 @@
                         echo "<table>";
 
                   }
+                 $conn->close(); 
                 
                 ?>
             </main>    

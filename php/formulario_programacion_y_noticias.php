@@ -30,7 +30,7 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
             <script src="../validaciones_programacion_y_noticias.js" defer></script>
 
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Envi&oacute;n Programaci&oacute;n y Noticias</title>
+            <title>Formulario Programaci&oacute;n y Noticias</title>
         </head>
         <body>
            <nav>
@@ -39,7 +39,7 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                 <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
                 <li><a href="login_inventario.php">Inventario</a></li>
                 <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
-                <li><a href="#">Formulario de noticias y formulario de programaci&oacute;n</a></li>
+                <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>
                 <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
 
@@ -53,7 +53,7 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                 <form action="controladornoticias.php" method="post" >
 
                     <div class="grindclass2">  
-                        <label for="noticainventario">Noticia:</label>
+                        <label for="noticiainventario">Noticia:</label>
 
                         <input type="text" id="noticiainventario" name="noticiainventario" minlength="5" required>
                        
@@ -86,7 +86,8 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                                     htmlspecialchars($fila['apellido2']) . 
                                     "</option>";
                                 }
-                              }  
+                              } 
+                            
                             ?>    
                         </select>
                         <label for="nivel">Curso:</label>
@@ -105,3 +106,6 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
             </footer>
         </body>
     </html>    
+    <?php
+        $conn->close();
+    ?>
