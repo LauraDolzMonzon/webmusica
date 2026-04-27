@@ -78,7 +78,7 @@
                     <td>
                     
                         <select name="invetariofamilia" id="invetariofamilia" required>
-                            <option value="sinespecificarfamilia" <?php if(($instrumentoEditar['familia'] ?? '')=='sinespecificarfamilia') echo 'selected'; ?>>Sinespecificarfamilia</option>
+                            <option value="sinespecificarfamilia" <?php if(($instrumentoEditar['familia'] ?? '')=='sinespecificarfamilia') echo 'selected'; ?>>Sin especificar</option>
                             <option value="vientometral" <?php if(($instrumentoEditar['familia'] ?? '')=='vientometral') echo 'selected'; ?>>Viento metal</option>
                             <option value="vientomadera" <?php if(($instrumentoEditar['familia'] ?? '' )=='vientomadera') echo 'selected'; ?>>Viento madera</option>
                             <option value="pesucion" <?php if(($instrumentoEditar['familia'] ?? '' )=='pesucion') echo 'selected'; ?>>Percusi&oacute;n</option>
@@ -86,7 +86,7 @@
                         </select> 
                     </td>
                     <td>  <select name="ivetarioubicacion" id="ivetarioubicacion" required>
-                            <option value="sinespecificarubicacion">Sinespecificarubicacion</option>
+                            <option value="sinespecificarubicacion">Sin especificar</option>
                             <option value="RMU1" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'RMU1') echo 'selected'; ?>>RMU1</option>
                             <option value="RMU2" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'RMU2') echo 'selected'; ?>>RMU2</option>
                             <option value="En varias aulas" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'En varias aulas') echo 'selected' ?>>En varias aulas</option> 

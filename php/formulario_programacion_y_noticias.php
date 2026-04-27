@@ -76,7 +76,7 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                     <div class="grindclass4">  
                         <label for="dni_profesor_todos">Elige el profesor</label>
                         <select name="dni_profesor_todos" id="dni_profesor_todos_id" required >
-                            <option value="">elige un profesor</option>
+                            <option value="">Elige un profesor</option>
                             <?php
                               if ($resultadotodosprofesores && $resultadotodosprofesores->num_rows > 0){
                                 while ($fila = $resultadotodosprofesores->fetch_assoc()){

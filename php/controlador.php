@@ -9,8 +9,7 @@
         die ("error de conexion" . $conn->connect_error);
     }
     
-  $usuariologin_invetariovalicionphp = trim($_POST['usuario']);
-    $contrasenyaologin_invetariovalicionphp = trim($_POST['contrasenya']);
+ 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dniusuarioinventario = trim($_POST['usuarioinventario']);
@@ -33,7 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rolespermitido = ['admin', 'profesor'];
    
     $sql = "SELECT  dni, contrasenya, rol FROM profesor WHERE dni = '$dniusuarioinventario' AND contrasenya = '$contrasenainventario'";
-    $resultado = mysqli_query($conn, $sql);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $resultado = $stmt->get_result();
     if (!$resultado) {
       die("Error en la consulta: " . $conn->error);
     }
