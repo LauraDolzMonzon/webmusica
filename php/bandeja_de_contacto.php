@@ -17,8 +17,9 @@
         exit();
     }
     $sqllistadobandejacontacto = "SELECT email, asunto, texto_contenido, id_contacto FROM contacto ORDER BY id_contacto DESC";
-    
-    $resultadoslistadobandejacontacto = $conn->query($sqllistadobandejacontacto);
+    $stmt = $conn->prepare($sqllistadobandejacontacto);
+    $stmt->execute();
+    $resultadoslistadobandejacontacto = $stmt->get_result();
     if (!$resultadoslistadobandejacontacto){
         die("Error en la consulta: " . $conn->error);
     }

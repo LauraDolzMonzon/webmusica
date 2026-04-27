@@ -67,9 +67,9 @@
                             
                                 <select name="flitofamilia" id="flitofamilia">
                                     <option value="">Sin especificar</option>
-                                    <option value="vientometal">Viento metal</option>
+                                    <option value="vientometral">Viento metal</option>
                                     <option value="vientomadera">Viento madera</option>
-                                    <option value="percusion">Percusi&oacute;n</option>
+                                    <option value="pesucion">Percusi&oacute;n</option>
                                     <option value="cuerda">Cuerda</option>
                                 </select>
 
@@ -82,7 +82,7 @@
                                     <option value="">Sin especificar</option>
                                     <option value="RMU1">RMU1</option>
                                     <option value="RMU2">RMU2</option>
-                                    <option value="Envariasaulas">En varias aulas</option>
+                                    <option value="En varias aulas">En varias aulas</option>
 
                                 </select>
                     </div>     

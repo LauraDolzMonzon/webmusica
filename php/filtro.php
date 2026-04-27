@@ -18,11 +18,17 @@
     $flitounidades = $_GET['flitounidades'] ?? "";
 
     $sql = "SELECT  dispositivo_acustico, familia, ubicacion, anyo_de_adquisicion, unidades FROM instrumento WHERE 1=1";
+    $tipos = "";
+    $valores = [];
     if ($filtroFamilia != ""){
-        $sql .= " AND familia = '$filtroFamilia'";
+        $sql .= " AND familia = ?";
+        $tipos .= "s";
+        $valores[] = $filtroFamilia;
     }
     if ($filtroUbicacion != ""){
-        $sql .= " AND ubicacion = '$filtroUbicacion'";
+        $sql .= " AND ubicacion = ?";
+        $tipos .= "s";
+        $valores[] = $filtroUbicacion;
     }
     $order = [];
     if ($filtroano == "asc") {
@@ -40,7 +46,12 @@
     $order[] = "dispositivo_acustico ASC";
 }
     $sql .= " ORDER BY " . implode(", ", $order);   
-    $resutadofiltro = $conn->query($sql);
+    $stmt = $conn->prepare($sql);
+    if (!empty($valores)) {
+        $stmt->bind_param($tipos, ...$valores);
+    }
+    $stmt->execute();
+    $resutadofiltro = $stmt->get_result();
     if (!$resutadofiltro){
         die("Error en la consulta: " . $conn->error);
     }
