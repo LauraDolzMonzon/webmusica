@@ -73,6 +73,24 @@
        $nivel = trim($_POST['nivel']);
        $ano = trim($_POST['ano']);
        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
+       if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === 0){
+        $nombre = $_FILES['archivo']['name'];
+        $tipo = mime_content_type($_FILES['archivo']['tmp_name']);
+        $extension = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
+
+        if ($extension !== 'pdf') {
+            $erroresvalicionesformularionoticia[] = "El archivo debe tener extensión PDF.";
+        }
+
+        if ($tipo !== 'application/pdf') {
+            $erroresvalicionesformularionoticia[] = "El archivo no es un PDF válido.";
+        }
+        if ($_FILES['archivo']['size'] > 1024 * 1024 * 1024) {
+            $erroresvalicionesformularionoticia[] = "El archivo no puede superar 1 GB.";
+        }  else {
+        $erroresvalicionesformularionoticia[] = "Debe subir un archivo PDF.";
+      }
+
          $nombrearchivo = time() . "_" . basename($_FILES['archivo']['name']);
        $ruta = "uploads/" . $nombrearchivo;
        move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta);
@@ -119,7 +137,7 @@
 
           $error = addslashes($conn->error);
           echo "<script>
-                  alert('Programación no guardada o error: $error'); window.location.href='formulario_programacion_y_noticias.php';;
+                  alert('Programación no guardada o error: $error'); window.location.href='formulario_programacion_y_noticias.php';
                  
                 </script>";
                   
@@ -129,6 +147,7 @@
     }  
       
     }
+  }
 
    $conn->close();
     
