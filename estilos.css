@@ -216,6 +216,10 @@ button{
     margin-bottom: 20px;
     margin-top: 13px;
 }
+select{
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 0.85vw; 
+}
 
 /* #idflito{
     display: grid;

@@ -17,6 +17,18 @@
                 input7.oninput = function () {
                         input7.setCustomValidity("");
                 };
+                const inputfecha = document.getElementById("Fechainventario");
+                inputfecha.addEventListener("change", function() {
+                  const min = "1900-01-01";
+                  const max = "2100-12-31";
+                  if (inputfecha.value < min || inputfecha.value > max) {
+                    inputfecha.setCustomValidity("Fecha entre 1900-01-01 y 2100-12-31");
+                  } else {
+                    inputfecha.setCustomValidity("");
+                  }
+            });
+
+                
                 //
                
                 const input8 = document.getElementById("textoprogamacion");
@@ -34,6 +46,7 @@
                 input10.oninput = function () {
                     input10.setCustomValidity("");
                 };
+                
             
              
                 

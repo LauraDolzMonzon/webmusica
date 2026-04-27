@@ -59,7 +59,7 @@ $resultadotodosprofesores = $conn->query($sqlprofesorestodos);
                        
                         <label  for="Fechainventario">Fecha:</label> 
             
-                        <input type="date" id="Fechainventario" name="Fechainventario" required>
+                        <input type="date" id="Fechainventario" name="Fechainventario" min="1900-01-01" max="2100-12-31" required>
                         <label  for="lugar">Lugar:</label> 
             
                         <input type="text" id="lugar" minlength="5" name="lugar" required>

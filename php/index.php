@@ -11,7 +11,9 @@
         exit();
     }
     $sqlindex = "SELECT titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia FROM noticia ORDER BY fecha DESC ";
-    $resultadoindex = $conn->query($sqlindex);
+    $stmt = $conn->prepare($sqlindex);
+    $stmt->execute();
+    $resultadoindex =  $stmt->get_result();
     if (!$resultadoindex) {
         die ("Erro de conexion; " . $conn->connect_error);
     }

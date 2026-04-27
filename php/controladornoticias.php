@@ -31,11 +31,9 @@
         if (empty($noticainventario)){
             $erroresvalicionesformularionoticiayp[] = "no se puede dejar el titulo vacido";
         }
-        if (empty($Fechainventario)){
-            $erroresvalicionesformularionoticiayp[] = "no se puede dajar la fecha vacido";
-        }
+        
         if (empty($lugar)){
-            $erroresvalicionesformularionoticiayp[] = "no se puede dejar el profesor vacido";
+            $erroresvalicionesformularionoticiayp[] = "no se puede dejar el lugar vacido";
         }
          if (empty($textoprogamacion)){
             $erroresvalicionesformularionoticiayp[] = "no se puede dejar la ruta vacido";
@@ -52,10 +50,27 @@
         }
 
 
+       
+        if (empty($Fechainventario)){
+            $erroresvalicionesformularionoticiayp[] = "La fecha no puede estar vacía.";
+        } else {
+         if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $Fechainventario)) {
+        $erroresvalicionesformularionoticiayp[] = "Formato de fecha inválido.";
+        } else {
+          list($anodate, $mes, $dia) = explode('-', $Fechainventario);
+          if ($anodate < 1900 || $anodate > 2100){
+            $erroresvalicionesformularionoticiayp[] = "El año debe estar entre 1900 y 2100.";
+          }
+          if (!checkdate($mes, $dia, $anodate)){
+            $erroresvalicionesformularionoticiayp[] = "la fecha no es validadd";
+          }
+       }
+      }
         if (!empty($erroresvalicionesformularionoticiayp)){
             echo "<script>window.location.href = 'formulario_programacion_y_noticias.php'</script>";
             exit();
-        }   
+        } 
+  
       
              
                       
@@ -69,32 +84,38 @@
             echo "<script>alert('Noticia no guardada o error: " . addslashes($conn->error) . "'); window.location.href='formulario_programacion_y_noticias.php';</script>";
           }
     }
+    
+    // 
     if (isset($_POST['botonparaenviarprogramacion'])){
        $nivel = trim($_POST['nivel']);
        $ano = trim($_POST['ano']);
        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
-       if (isset($_FILES['archivo']) && $_FILES['archivo']['error'] === 0){
-        $nombre = $_FILES['archivo']['name'];
-        $tipo = mime_content_type($_FILES['archivo']['tmp_name']);
-        $extension = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
+       $erroresvalicionesformularionoticia = [];
 
-        if ($extension !== 'pdf') {
-            $erroresvalicionesformularionoticia[] = "El archivo debe tener extensión PDF.";
-        }
+      // if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK){
+        // $erroresvalicionesformularionoticia[] = "Debe subir un archivo PDF.";
+       // } else {
+       // $nombre = $_FILES['archivo']['name'];
+      //  $tipo = mime_content_type($_FILES['archivo']['tmp_name']);
+       // $extension = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
 
-        if ($tipo !== 'application/pdf') {
-            $erroresvalicionesformularionoticia[] = "El archivo no es un PDF válido.";
-        }
-        if ($_FILES['archivo']['size'] > 1024 * 1024 * 1024) {
-            $erroresvalicionesformularionoticia[] = "El archivo no puede superar 1 GB.";
-        }  else {
-        $erroresvalicionesformularionoticia[] = "Debe subir un archivo PDF.";
-      }
+      //  if ($extension !== 'pdf') {
+            // $erroresvalicionesformularionoticia[] = "El archivo debe tener extensión PDF.";
+// 
+        // }
+
+        // if ($tipo !== 'application/pdf') {
+          //  $erroresvalicionesformularionoticia[] = "El archivo no es un PDF válido.";
+        // }
+        // if ($_FILES['archivo']['size'] > 1024 * 1024 * 1024) {
+            // $erroresvalicionesformularionoticia[] = "El archivo no puede superar 1 GB.";
+
+        // }  
 
          $nombrearchivo = time() . "_" . basename($_FILES['archivo']['name']);
        $ruta = "uploads/" . $nombrearchivo;
        move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta);
-       $erroresvalicionesformularionoticia = [];
+       
 
              if (empty($nivel)){
             $erroresvalicionesformularionoticia[] = "no se puede dejar el nivel vacido";
@@ -147,7 +168,8 @@
     }  
       
     }
-  }
+  //}
+  
 
    $conn->close();
     
