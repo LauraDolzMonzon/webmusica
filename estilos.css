@@ -221,6 +221,9 @@ select{
    font-family: Arial, Helvetica, sans-serif;
    font-size: 0.85vw; 
 }
+.admistrarfyn{
+    margin-top: 30px;
+}
 
 /* #idflito{
     display: grid;

@@ -17,12 +17,16 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
     if ($conn->connect_error){
         die("error de conexion" . $conn->connect_error);
     }    
-$sqlprofesorestodos = "SELECT dni, nombre, apellido1, apellido2 FROM profesor WHERE rol != 'invitado';";
+$sqlprofesorestodos = "SELECT dni, nombre, apellido1, apellido2 FROM profesor WHERE rol != 'invitado'";
 $stmt = $conn->prepare($sqlprofesorestodos);
 $stmt->execute();
 
 $resultadotodosprofesores = $stmt->get_result();
+$sqllistadonoticiaeliminar = "SELECT * FROM noticia ";
+$sqllistadoprogramacioaeliminar = "SELECT  programacion.anyo, programacion.contenido, programacion.id_programacion, programacion.titulo_programacion, profesor.nombre, profesor.apellido1, profesor.apellido2  FROM programacion LEFT JOIN tabla_profesor_programacion ON programacion.id_programacion = tabla_profesor_programacion.id_programacion_intermedio  LEFT JOIN profesor ON  tabla_profesor_programacion.dni_profesor_intermedio = profesor.dni ORDER BY programacion.anyo DESC";
 
+$resultadolistadonoticiaeliminar = mysqli_query($conn, $sqllistadonoticiaeliminar);
+$resultadolistadoprogramacioaeliminar = mysqli_query($conn, $sqllistadoprogramacioaeliminar);
 ?>
 
 <!DOCTYPE html>
@@ -102,6 +106,107 @@ $resultadotodosprofesores = $stmt->get_result();
                 </div><br>
                     <button class="botonparaenviarformularioprogamacionynoticias2" name="botonparaenviarprogramacion" type="submit">Enviar</button>
                </form>
+               <h3>Editar noticia </h3>
+
+                 <div class="admistrarfyn">
+                    <?php
+                        if ($resultadolistadonoticiaeliminar->num_rows > 0){
+                            while($row = $resultadolistadonoticiaeliminar->fetch_assoc()){
+                            echo "<table class='tablaphp'>";
+                            echo "<tr>";
+                            echo "<th>Titulo noticia</th>";
+                            echo "<th>Texto noticia</th>";
+                            echo "<th>Lugar</th>";      
+                            echo "<th>Fecha</th>";
+                            echo "<th>Eleminar</th>";   
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row['titulo_noticia']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['texto_noticia']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['lugar']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['fecha']) . "</td>";
+                            echo "<form action='controladoreliminarfyn.php' method='post'>";
+                            echo "<td>";
+                            echo "<input type='hidden' name='id_noticia' value='" . htmlspecialchars($row['id_noticia']) . "'>";
+                            echo "<button name='accionnyf' value='noticiaeliminar' type='submit'>Eleminar</button>";
+                            echo "</td>";
+                            echo "</form>";
+                            echo "</tr>";
+
+                            echo "</table>";
+
+
+                            }
+                            } else {
+                                echo "<table class='tablaphp'>";
+                            echo "<tr>";
+                            echo "<th>Titulo noticia</th>";
+                            echo "<th>Texto noticia</th>";
+                            echo "<th>Lugar</th>";      
+                            echo "<th>Fecha</th>";
+                            echo "<th>Eleminar</th>";   
+                            echo "<tr>";
+                            echo "<td colspan='5'> No hay datos </td>";
+                        
+                            echo "</tr>"; 
+                            echo "</table>";
+                        
+                        }
+                  ?>  
+                 </div> 
+                 <h3>Editar Programaci&oacute;n </h3>
+                 <div class="admistrarfyn">
+                    <?php
+                        if ($resultadolistadoprogramacioaeliminar->num_rows > 0){
+                            while($filla = $resultadolistadoprogramacioaeliminar->fetch_assoc()){
+                                echo "<table class='tablaphp'>";
+                                echo "<tr>";
+                                echo "<th>a&#241;o</th>";
+                                echo "<th>Curso</th>";
+                                echo "<th>Nombre</th>";
+                                echo "<th>Apellido1</th>";
+                                echo "<th>Apellido2</th>";
+                                echo "<th>Contenido</th>"; 
+                                echo "<th>Eliminar</th>";   
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($filla['anyo']) . "</td>";
+                                echo "<td>" . htmlspecialchars($filla['titulo_programacion']) . "</td>";
+                                echo "<td>" . htmlspecialchars($filla['nombre']) . "</td>";
+                                echo "<td>" . htmlspecialchars($filla['apellido1']) . "</td>";
+                                echo "<td>" . htmlspecialchars($filla['apellido2']) . "</td>";
+                                echo "<td>" . '<a href="' .  htmlspecialchars($filla['contenido']) . '"  download> <button type="button">Descargar</button> </a>' .  "</td>";
+                                echo "<form action='controladoreliminarfyn.php' method='post'>";
+
+                                echo "<td>";
+
+                                echo "<input type='hidden' name='id_programacion' value='" . htmlspecialchars($filla['id_programacion']) . "'>";
+                                echo "<button name='accionnyf' value='programacionaeliminar' type='submit'>Eleminar</button>";
+  
+                                echo "</td>";
+                                echo "</form>";
+                                echo "</tr>"; 
+
+                                echo "</table>";
+                            } 
+                            } else {
+                                echo "<table class='tablaphp'>";
+                                echo "<tr>";
+                                echo "<th>A&#241;o</th>";
+                                echo "<th>Titulo programacion</th>";
+                                echo "<th>Nombre</th>";
+                                echo "<th>Apellido1</th>";
+                                echo "<th>Apellido2</th>";
+                                echo "<th>Contenido</th>"; 
+                                echo "<th>Eliminar</th>";
+                                echo "<tr>";
+                                echo "<td colspan='7'> No hay datos </td>";
+
+                                echo "</tr>"; 
+                                echo "</table>";
+                            }
+                            
+                                    
+                    ?>    
+                  </div>           
                
             </main>
             <footer>
