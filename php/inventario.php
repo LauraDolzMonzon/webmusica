@@ -20,7 +20,9 @@
         }
         if (!isset($_SESSION['resultado_filtro'])) {
              $sql = "SELECT dispositivo_acustico, familia, ubicacion, anyo_de_adquisicion, unidades FROM instrumento ORDER BY dispositivo_acustico ASC";
-             $resultadoinvetariolistado = $conn->query($sql);
+             $stmt = $conn->prepare($sql);
+             $stmt->execute();
+             $resultadoinvetariolistado = $stmt->get_result();
              if (!$resultadoinvetariolistado) {
                die("Error en la consulta: " . $conn->error);
             }

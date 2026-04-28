@@ -37,7 +37,9 @@
               
      
       $sql3 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuariologinformularioinventario'";
-      $resultado3 = mysqli_query($conn, $sql3);
+      $stmt = $conn->prepare($sql3);
+      $stmt->execute();
+      $resultado3 = $stmt->get_result();
       if (!$resultado3) {
         die("Error en la consulta: " . $conn->error);
     }

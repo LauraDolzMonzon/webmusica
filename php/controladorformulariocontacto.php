@@ -30,8 +30,14 @@
         }
 
         $sqlcontatoformulario = "INSERT INTO contacto (email, asunto, texto_contenido, dni_profesor_contacto) 
-        VALUES ('$emailcontacto', '$asuntocontacto', '$enviartextos', '$dni_conacto')";
-        if (mysqli_query($conn, $sqlcontatoformulario)){
+        VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sqlcontatoformulario);
+        if ($stmt === false){
+            die("Error en la consulta prerada(); " . $conn->connect_error);
+        }
+        $stmt->bind_param("ssss", $emailcontacto, $asuntocontacto, $enviartextos, $dni_conacto);
+
+        if ($stmt->execute()){
             echo "<script>alert('Email enviado'); window.location.href = 'formulario_contacto.php';</script>";
             exit(); 
         } else {
@@ -40,4 +46,4 @@
         }
 
     }
-    $conn->close();    
+    $stmt->close();    

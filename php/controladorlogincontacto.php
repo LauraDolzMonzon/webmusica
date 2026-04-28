@@ -33,9 +33,11 @@
       }
                   
     $sqlbanderaconctato = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuarioicontacto'";
-    
+    $stmt = $conn->prepare($sqlbanderaconctato);
+    $stmt->execute();
 
-    $resultadobanderaconctato = mysqli_query($conn, $sqlbanderaconctato);
+
+    $resultadobanderaconctato = $stmt->get_result();
     if (!$resultadobanderaconctato) {
       die("Error en la consulta: " . $conn->error);
     }

@@ -32,7 +32,10 @@
     }
               
     $sql2 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuariofyp'";
-    $resultado2 = mysqli_query($conn, $sql2);
+    $stmt = $conn->prepare($sql2);
+    $stmt->execute();
+
+    $resultado2 = $stmt->get_result();
     if (!$resultado2) {
       die("Error en la consulta: " . $conn->error);
     }

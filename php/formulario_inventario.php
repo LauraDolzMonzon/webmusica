@@ -16,15 +16,24 @@
             die("error de conexion" . $conn->connect_error);
     } 
     $sqlformularoinvetario = "SELECT ubicacion, anyo_de_adquisicion, unidades, familia, dispositivo_acustico, id_instrumento  FROM instrumento ORDER BY dispositivo_acustico ";
-    $resultadoinvetarioformulario = $conn->query($sqlformularoinvetario);
+    $stmt = $conn->prepare($sqlformularoinvetario);
+    $stmt->execute();
+
+    $resultadoinvetarioformulario = $stmt->get_result();
     if (!$resultadoinvetarioformulario) {
         die("Error de conexión" .$conn->error );
     }
     $instrumentoEditar = null;
     if (isset($_GET['id_editar'])){
         $id = intval($_GET['id_editar']);
-        $sql = "SELECT * FROM instrumento WHERE id_instrumento = $id";
-        $resultadodevuelto = $conn->query($sql);
+        $sql = "SELECT * FROM instrumento WHERE id_instrumento = ?";
+        $stmt = $conn->prepare($sql);
+        if ($stmt === false) {
+        die("Error en prepare(): " . $conn->connect_error);
+    }
+        $stmt->bind_param("1", $id);
+        $stmt->execute();
+        $resultadodevuelto = $stmt->get_result();
         if ($resultadodevuelto->num_rows == 1) {
             $instrumentoEditar = $resultadodevuelto->fetch_assoc();
         }

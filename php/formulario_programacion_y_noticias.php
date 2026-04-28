@@ -18,7 +18,10 @@ if (!isset($_SESSION['rol']) || $_SESSION['rol'] !== 'admin') {
         die("error de conexion" . $conn->connect_error);
     }    
 $sqlprofesorestodos = "SELECT dni, nombre, apellido1, apellido2 FROM profesor WHERE rol != 'invitado';";
-$resultadotodosprofesores = $conn->query($sqlprofesorestodos);
+$stmt = $conn->prepare($sqlprofesorestodos);
+$stmt->execute();
+
+$resultadotodosprofesores = $stmt->get_result();
 
 ?>
 

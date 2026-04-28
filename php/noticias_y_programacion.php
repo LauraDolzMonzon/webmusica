@@ -9,15 +9,19 @@
         die("error de conexion" . $conn->connect_error);
     }
     $sql4 = "SELECT  titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia FROM noticia ORDER BY fecha DESC";
-    $resultadostablanoticias = $conn->query($sql4);
+    $stmt = $conn->prepare($sql4);
+    $stmt->execute();
+
+    $resultadostablanoticias = $stmt->get_result();
     if (!$resultadostablanoticias) {
       die("Error en la consulta de noticias: " . $conn->error);
     }
 
     $sqlformularioprogramacion = "SELECT programacion.anyo, programacion.contenido, programacion.titulo_programacion, profesor.nombre, profesor.apellido1, profesor.apellido2 FROM programacion LEFT JOIN tabla_profesor_programacion 
     ON programacion.id_programacion = tabla_profesor_programacion.id_programacion_intermedio LEFT JOIN profesor ON tabla_profesor_programacion.dni_profesor_intermedio = profesor.dni ORDER BY programacion.anyo DESC ";
-
-    $resultadostablaprogramacion = $conn->query($sqlformularioprogramacion);
+    $stmt2 = $conn->prepare($sqlformularioprogramacion);
+    $stmt2->execute();
+    $resultadostablaprogramacion = $stmt2->get_result();
     if (!$resultadostablaprogramacion) {
       die("Error en la consulta de noticias: " . $conn->error);
       exit();
