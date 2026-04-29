@@ -149,29 +149,40 @@
       
 
        
-       $sqlprogramacion = "INSERT INTO programacion (anyo, contenido, titulo_programacion)
-       VALUES ('$ano', '$ruta', '$nivel')";
-       if ($conn->query($sqlprogramacion)) {
+       $stmt = $conn->prepare("INSERT INTO programacion (anyo, contenido, titulo_programacion)
+       VALUES (?, ?, ?)");
+       $stmt->bind_param("iss",$ano, $ruta, $nivel);
+       //
+       if ($stmt->execute()) {
         $id_programacion_intermedio = $conn->insert_id;
-        $sql_tabla_intermedeia = "INSERT INTO tabla_profesor_programacion (dni_profesor_intermedio, id_programacion_intermedio)
-        VALUES ('$dni_prfosesor_programacion', '$id_programacion_intermedio')";
-        if(mysqli_query($conn, $sql_tabla_intermedeia)) {
+        $stmt2 = $conn->prepare("INSERT INTO tabla_profesor_programacion (dni_profesor_intermedio, id_programacion_intermedio)
+        VALUES (?, ?)");
+        $stmt2->bind_param("si", $dni_prfosesor_programacion, $id_programacion_intermedio);
+        if($stmt2->execute()) {
           echo "<script>alert('Programacion guardara');  window.location.href='formulario_programacion_y_noticias.php';</script>";
         } else{  
 
-          $error = addslashes($conn->error);
+          $error = addslashes($stmt2->error);
           echo "<script>
                   alert('Programación no guardada o error: $error'); window.location.href='formulario_programacion_y_noticias.php';
                  
                 </script>";
                   
               
-        }       
+        }     
+        $stmt2->close();  
+      } else{
+        $error = addslashes($stmt->error);
+        echo  "<script>alert('Programación no guardada o error: $error'); window.location.href='formulario_programacion_y_noticias.php';</script>";
       }
+              $stmt->close();
+
     }  
+            $stmt->close();
+
       
     }
-  //}
+  
   
 
    $conn->close();

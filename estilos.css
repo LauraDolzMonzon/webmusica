@@ -11,18 +11,18 @@
 }
 nav{
     background-color:  var(--color_verde);
-    padding:   20PX;
+    padding:   1.7vw;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 1vw;
 }
 main{
     background-color: var(--color_blanco);
 }
 footer{
     background-color:  var(--color_verde);
-    margin-top: 20px;
+    margin-top: 1vw;
     width: 100%;
-    padding: 20px;
+    padding: 1vw;
 }
 li{
     display: inline-block;
@@ -52,11 +52,11 @@ table{
     width: 50%;
     border-collapse: collapse;
     background-color: var(--color_blanco);
-    margin-bottom: 20px;
+    margin-bottom: 1vw;
 }
 #div1inicio{
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 1vw;
+    padding-top: 1vw;
 }
 input{
     font-family: Arial, Helvetica, sans-serif;
@@ -79,7 +79,7 @@ label{
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
-    margin-top: 48px; 
+    margin-top: 2vw; 
     font-size: 0.85vw;
 
 }
@@ -88,7 +88,7 @@ label{
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
-    margin-top: 60px;
+    margin-top: 5vw;
     font-size: 0.85vw;
 
 }
@@ -100,18 +100,14 @@ label{
     width: 45%;
     justify-content: center;
 }
-h2, h3, h1{
-    margin: 20px;
+h3, h1{
+    margin: 0.7vw;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.5vw;
 }
-h3{
-    margin: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 1.15vw;
-}
+
 h2 {
-    margin: 20px;
+    margin: 0.5vw;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.35vw;
 }
@@ -120,24 +116,24 @@ h2 {
     display: grid;
     grid-template-columns: 25% 25%;
     grid-template-rows: auto 30px;
-    height: 30px;
+    height: 2vw;
     width: 45%;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 1.5px;
 }
 textarea{ 
     width: 100%;
-    height: 35px;
+    height: 3vw;
     font-family: Arial, Helvetica, sans-serif;
     resize: none;
     overflow: auto;
     border: 1.5px solid var(--color_azul);
-    border-radius: 6px;
+    border-radius: 6px; 
 
 }
 .h3nyp{
     font-family: Arial, Helvetica, sans-serif;
-    margin: 20px;
+    margin: 1vw;
     font-size: 1vw;
 
 }
@@ -157,7 +153,7 @@ h4, p{
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
-    margin-top: 80px;
+    margin-top: 5.2vw;
     font-size: 0.85vw;
 
 }
@@ -166,7 +162,7 @@ h4, p{
     background-color: var(--color_naranga);
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
-    margin-top: 50px;
+    margin-top: 2.2vw;
     font-size: 0.85vw;
 
 }
@@ -174,7 +170,7 @@ h4, p{
     display: grid;
     grid-template-columns: 25% 25%;
     grid-template-rows: auto 40px;
-    height: 80px;
+    height: 3.5vw;
     width: 45%;
     justify-content: center; 
 }
@@ -199,7 +195,7 @@ button{
     outline: none !important;
 }
 .tablaphp {
-    margin-bottom: 15px;
+    margin-bottom: 1vw;
     border: solid 2px;
     width: 50%;
     border-collapse: collapse;
@@ -213,8 +209,8 @@ button{
     border: 1.5px solid var(--color_azul);
     border-radius: 6px;
     font-size: 0.85vw;
-    margin-bottom: 20px;
-    margin-top: 13px;
+    margin-bottom: 0.5vw;
+    margin-top: 0.4vw;
 }
 select{
    appearance: none;
@@ -222,7 +218,7 @@ select{
    font-size: 0.85vw; 
 }
 .admistrarfyn{
-    margin-top: 30px;
+    margin-top: 1vw;
 }
 
 /* #idflito{

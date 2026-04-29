@@ -95,6 +95,7 @@
                         echo        "<td colspan='4'>No hay datos</td>";
                         
                         echo     "</tr>";
+                        echo  "</table>"; 
                  }
              ?>
 
