@@ -95,25 +95,32 @@
        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
        $erroresvalicionesformularionoticia = [];
 
-      // if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK){
-        // $erroresvalicionesformularionoticia[] = "Debe subir un archivo PDF.";
-       // } else {
-       // $nombre = $_FILES['archivo']['name'];
-      //  $tipo = mime_content_type($_FILES['archivo']['tmp_name']);
-       // $extension = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
+     if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
+    $erroresvalicionesformularionoticia[] = "Debe subir un archivo PDF.";
+} else {
 
-      //  if ($extension !== 'pdf') {
-            // $erroresvalicionesformularionoticia[] = "El archivo debe tener extensión PDF.";
-// 
-        // }
+    $nombre = $_FILES['archivo']['name'];
+    $tipo = mime_content_type($_FILES['archivo']['tmp_name']);
+    $extension = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
 
-        // if ($tipo !== 'application/pdf') {
-          //  $erroresvalicionesformularionoticia[] = "El archivo no es un PDF válido.";
-        // }
-        // if ($_FILES['archivo']['size'] > 1024 * 1024 * 1024) {
-            // $erroresvalicionesformularionoticia[] = "El archivo no puede superar 1 GB.";
+    // Validar extension
+    if ($extension !== 'pdf') {
+        $erroresvalicionesformularionoticia[] = "El archivo debe tener extensión PDF.";
+    }
 
-        // }  
+    // Validar si es tipo MIME y es MINE autentico
+    if ($tipo !== 'application/pdf') {
+        $erroresvalicionesformularionoticia[] = "El archivo no es un PDF válido.";
+    }
+
+    // Validar tamaño (hadta un 1 GB)
+    if ($_FILES['archivo']['size'] > 1024 * 1024 * 1024) {
+        $erroresvalicionesformularionoticia[] = "El archivo no puede superar 1 GB.";
+    }
+}
+
+
+    
 
          $nombrearchivo = time() . "_" . basename($_FILES['archivo']['name']);
        $ruta = "uploads/" . $nombrearchivo;
