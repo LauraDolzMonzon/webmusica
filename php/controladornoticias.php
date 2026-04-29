@@ -76,13 +76,16 @@
                       
 
 
-        $sqlnoticias = "INSERT INTO noticia (titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia)
-        VALUES ('$noticainventario', '$Fechainventario', '$lugar', '$textoprogamacion', '$dni_prfosesor')";
-        if(mysqli_query($conn, $sqlnoticias)){
+        $stmt = $conn->prepare("INSERT INTO noticia (titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia)
+        VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssss", $noticainventario, $Fechainventario, $lugar, $textoprogamacion, $dni_prfosesor);
+       
+        if($stmt->execute()){
           echo "<script>alert('Noticia guardada'); window.location.href = 'formulario_programacion_y_noticias.php'; </script>";
         } else{
             echo "<script>alert('Noticia no guardada o error: " . addslashes($conn->error) . "'); window.location.href='formulario_programacion_y_noticias.php';</script>";
           }
+          $stmt->close();
     }
     
     // 

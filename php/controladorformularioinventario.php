@@ -79,15 +79,22 @@
               exit();
           }
 
-          $sqlupdate = "UPDATE instrumento SET dispositivo_acustico='$instrumentoEditarupdate', familia='$familiaEditarupdate',  ubicacion='$ubicacionEditarupdate',   unidades='$unidadesupdate',  anyo_de_adquisicion='$invetarioanodeadquision'  WHERE id_instrumento=$id ";
-          if ($conn->query($sqlupdate)){
+          $stmt = $conn->prepare("UPDATE instrumento SET dispositivo_acustico=?, familia=?,  ubicacion=?,   unidades=?,  anyo_de_adquisicion=?  WHERE id_instrumento=? ");
+          $stmt->bind_param("sssisi", $instrumentoEditarupdate, 
+            $familiaEditarupdate, 
+            $ubicacionEditarupdate, 
+            $unidadesupdate, 
+            $invetarioanodeadquision, 
+            $id );
+
+          if ($stmt->execute()){
             echo "<script>alert('Instrumento actualizado correctamente'); window.location.href='formulario_inventario.php';</script>"; 
 
 
           } else{
              echo "<script>alert('Instrumento no actualizado correctamente'); window.location.href='formulario_inventario.php';</script>";
           }
-          exit();
+          $stmt->close();
           }
       if (isset($_POST['formularioinvetariopricipal'])&& empty($_POST['id_editar'])){
           $Intrumetroivenatario = trim($_POST['Intrumetroivenatario']);
@@ -106,38 +113,45 @@
           }
 
           
-          $sqlcontroladorformularioinvetario ="INSERT INTO instrumento (dispositivo_acustico, familia, ubicacion, unidades, anyo_de_adquisicion, dni_profesor_instrumento)
-          VALUES ('$Intrumetroivenatario', '$invetariofamilia', '$ivetarioubicacion', '$invetariounidades', '$invetarioanodeadquision', '$dni_formularioinvetario')";
-          if(mysqli_query($conn, $sqlcontroladorformularioinvetario)){
+          $stmt = $conn->prepare("INSERT INTO instrumento (dispositivo_acustico, familia, ubicacion, unidades, anyo_de_adquisicion, dni_profesor_instrumento)
+          VALUES (?, ?, ?, ?, ?, ?)");
+          $stmt->bind_param("sssiss", $Intrumetroivenatario, $invetariofamilia, $ivetarioubicacion, $invetariounidades, $invetarioanodeadquision, $dni_formularioinvetario);
+          if($stmt->execute()){
             echo "<script>alert('Instumeto guardado'); window.location.href = 'formulario_inventario.php'; </script>";
           } else{
             echo "<script>alert('instrumeto no guardado o error ". $conn->error ."'); window.location.href = 'formulario_inventario.php'; </script>";
           }
+          $stmt->close();
     }
     if (isset($_POST['accion']) && $_POST['accion'] == 'eliminar') {
 
         $id_instrumento = $_POST['id_instrumento'];
         if (isset($id_instrumento) && is_numeric($id_instrumento)){
         
-          $sqleliminar = "DELETE FROM instrumento WHERE id_instrumento = $id_instrumento";
-          if (mysqli_query($conn, $sqleliminar)){
+          $stmt = $conn->prepare("DELETE FROM instrumento WHERE id_instrumento = ?");
+          $stmt->bind_param("i", $id_instrumento);
+          if ($stmt->execute()){
              echo "<script>alert('Instrumento eliminado correctamente'); window.location.href = 'formulario_inventario.php';</script>";
                 } else {
                     echo "<script>alert('Error al eliminar el instrumento: " . $conn->error . "'); window.location.href = 'formulario_inventario.php';</script>";
           }
+          $stmt->close();
         }
 
       }
         if (isset($_POST['accion']) && $_POST['accion'] == 'editar') {
         $id = $_POST['id_instrumento'];
-        $sqleditar = "SELECT * FROM instrumento WHERE id_instrumento = $id";
-        $resultadoeditar = $conn->query($sqleditar);
+        $stmt = $conn->prepare("SELECT * FROM instrumento WHERE id_instrumento = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $resultadoeditar = $stmt->get_result();
         if ($resultadoeditar->num_rows == 1) {
           $instrumentoEditar = $resultadoeditar->fetch_assoc();
                   echo "<script>alert('Editando instrumento: " . $instrumentoEditar['dispositivo_acustico'] . "'); window.location.href = 'formulario_inventario.php?id_editar=$id';</script>";
         } else{
           echo "<script>alert('No se puede editar eñ instrumento');   window.location.href = 'formulario_inventario.php';</script>";
         }
+          $stmt->close();
         }
 
 
