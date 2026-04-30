@@ -71,8 +71,8 @@ $resultadolistadoprogramacioaeliminar = mysqli_query($conn, $sqllistadoprogramac
             
                         <input type="text" id="lugar" minlength="5" name="lugar" required>
                        
-                        <label for="textoprogamacion">Texto:</label>
-                        <textarea id="textoprogamacion" name="textoprogamacion" minlength="8" required></textarea>
+                        <label for="textonoticia">Texto:</label>
+                        <textarea id="textonoticia" name="textonoticia" minlength="8" required></textarea>
 
                         
                     </div><br>

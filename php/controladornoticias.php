@@ -23,7 +23,7 @@
         $noticainventario = trim($_POST['noticiainventario']);
         $Fechainventario = trim($_POST['Fechainventario']);
         $lugar = trim($_POST['lugar']);
-        $textoprogamacion = trim($_POST['textoprogamacion']);
+        $textonoticia = trim($_POST['textonoticia']);
         $dni_prfosesor = $_SESSION['dni'];
         $erroresvalicionesformularionoticiayp = [];
       
@@ -35,7 +35,7 @@
         if (empty($lugar)){
             $erroresvalicionesformularionoticiayp[] = "no se puede dejar el lugar vacido";
         }
-         if (empty($textoprogamacion)){
+         if (empty($textonoticia)){
             $erroresvalicionesformularionoticiayp[] = "no se puede dejar la ruta vacido";
 
         }
@@ -45,7 +45,7 @@
         if(strlen($lugar) < 5){
            $erroresvalicionesformularionoticiayp[] = "Se requiere como mínimo 5 caracteres ";
         }
-        if (strlen($textoprogamacion) < 8){
+        if (strlen($textonoticia) < 8){
           $erroresvalicionesformularionoticiayp[] = "Se requiere como minimo 8 caracteres";
         }
 
@@ -78,7 +78,7 @@
 
         $stmt = $conn->prepare("INSERT INTO noticia (titulo_noticia, fecha, lugar,  texto_noticia, dni_profesor_noticia)
         VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $noticainventario, $Fechainventario, $lugar, $textoprogamacion, $dni_prfosesor);
+        $stmt->bind_param("sssss", $noticainventario, $Fechainventario, $lugar, $textonoticia, $dni_prfosesor);
        
         if($stmt->execute()){
           echo "<script>alert('Noticia guardada'); window.location.href = 'formulario_programacion_y_noticias.php'; </script>";
