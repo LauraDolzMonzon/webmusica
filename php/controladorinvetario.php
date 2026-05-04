@@ -36,8 +36,10 @@
         
               
      
-      $sql3 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuariologinformularioinventario'";
+      $sql3 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = ?";
       $stmt = $conn->prepare($sql3);
+      $stmt->bind_param("s", $usuariologinformularioinventario);
+
       $stmt->execute();
       $resultado3 = $stmt->get_result();
       if (!$resultado3) {

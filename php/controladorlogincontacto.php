@@ -32,8 +32,11 @@
        exit();
       }
                   
-    $sqlbanderaconctato = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuarioicontacto'";
+    $sqlbanderaconctato = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = ?";
+
     $stmt = $conn->prepare($sqlbanderaconctato);
+    $stmt->bind_param("s", $usuarioicontacto);
+
     $stmt->execute();
 
 

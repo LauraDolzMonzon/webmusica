@@ -31,8 +31,10 @@
        exit();
     }
               
-    $sql2 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = '$usuariofyp'";
+    $sql2 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = ?";
     $stmt = $conn->prepare($sql2);
+    $stmt->bind_param("s", $usuariofyp);
+
     $stmt->execute();
 
     $resultado2 = $stmt->get_result();

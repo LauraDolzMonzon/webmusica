@@ -31,8 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       }      
     $rolespermitido = ['admin', 'profesor'];
    
-    $sql = "SELECT  dni, contrasenya, rol FROM profesor WHERE dni = '$dniusuarioinventario' AND contrasenya = '$contrasenainventario'";
+    $sql = "SELECT  dni, contrasenya, rol FROM profesor WHERE dni = ? AND contrasenya = ?";
     $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $dniusuarioinventario, $contrasenainventario);
+
     $stmt->execute();
 
     $resultado = $stmt->get_result();
