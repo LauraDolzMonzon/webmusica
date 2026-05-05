@@ -67,7 +67,7 @@
        }
       }
         if (!empty($erroresvalicionesformularionoticiayp)){
-            echo "<script>window.location.href = 'formulario_programacion_y_noticias.php'</script>";
+            echo "<script>alert('Error en las validaciones prueba a enviado de nuevo'); window.location.href = 'formulario_programacion_y_noticias.php'</script>";
             exit();
         } 
   
@@ -148,7 +148,7 @@
   
 
      if (!empty($erroresvalicionesformularionoticia)){
-            echo "<script>window.location.href = 'formulario_programacion_y_noticias.php'</script>";
+            echo "<script>alert('Error en las validaciones prueba a enviado de nuevo'); window.location.href = 'formulario_programacion_y_noticias.php'</script>";
             exit();
         }    
       
