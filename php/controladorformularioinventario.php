@@ -48,9 +48,16 @@
 
     if (empty($_POST['invetarioanodeadquision'])) {
         $erroresFormularioInventario[] = "El campo Año de adquisición no puede estar vacío.";
-    } elseif (!preg_match("/^[0-9]{4}$/", $_POST['invetarioanodeadquision'])) {
-        $erroresFormularioInventario[] = "El año debe tener exactamente 4 números.";
+    }elseif (!preg_match("/^[0-9]{4}$/", $_POST['invetarioanodeadquision'])) {
+    $erroresFormularioInventario[] = "El año debe tener entre 4 números.";
+    }else {
+    $ano = intval($_POST['invetarioanodeadquision']);
+
+    if ($ano < 1900 || $ano > 2100) {
+        $erroresFormularioInventario[] = "El año debe estar entre 1900 y 2100.";
     }
+}
+
     
     
 
@@ -76,7 +83,7 @@
 
           if (!empty($erroresFormularioInventario)) {
               $_SESSION['erroresFormularioInventario'] = $erroresFormularioInventario;
-              header("Location: formulario_inventario.php");
+              echo "<script>alert('errores en la validaciones '); window.location.href='formulario_inventario.php';</script>"; 
               exit();
           }
 
@@ -109,7 +116,7 @@
 
           if (!empty($erroresFormularioInventario)) {
               $_SESSION['erroresFormularioInventario'] = $erroresFormularioInventario;
-              header("Location: formulario_inventario.php");
+              echo "<script>alert('errores en la validaciones '); window.location.href='formulario_inventario.php';</script>"; 
               exit();
           }
 

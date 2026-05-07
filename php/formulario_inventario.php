@@ -45,7 +45,7 @@
         
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="../validaciones_inventario.js"> </script>
+        <script src="../validaciones_inventario.js" defer> </script>
         <link  rel="stylesheet" href="../estilos.css">
         <title>Formulario inventario</title>
 
@@ -107,9 +107,9 @@
                     
                        
 
-                    <td><input type="text" id="invetarioanodeadquision" name="invetarioanodeadquision"  pattern="^[0-9]{1,4}$"   maxlength="4" value="<?php echo $instrumentoEditar['anyo_de_adquisicion'] ?? ''; ?>" required> </td>
+                    <td><input type="text" id="invetarioanodeadquision" name="invetarioanodeadquision"  pattern="[0-9]{4}"  maxlength="4" value="<?php echo $instrumentoEditar['anyo_de_adquisicion'] ?? ''; ?>" required> </td>
                     
-                    <td><button type="submit" class="botonadminstrainventario" name="formularioinvetariopricipal">Enviar</button></td>
+                    <td><button type="submit" class="botonadminstrainventario" name="formularioinvetariopricipal" >Enviar</button></td>
 
                  </tr>  
 

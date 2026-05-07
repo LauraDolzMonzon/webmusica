@@ -95,13 +95,20 @@
        $dni_prfosesor_programacion = $_POST['dni_profesor_todos'];
        $erroresvalicionesformularionoticia = [];
 
-     if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
+if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
     $erroresvalicionesformularionoticia[] = "Debe subir un archivo PDF.";
 } else {
 
     $nombre = $_FILES['archivo']['name'];
     $tipo = mime_content_type($_FILES['archivo']['tmp_name']);
     $extension = strtolower(pathinfo($nombre, PATHINFO_EXTENSION));
+    //más 1 un archivo
+    if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK) {
+    $erroresvalicionesformularionoticia[] = "Debe subir un archivo PDF. No se pueden subir carpetas.";
+}
+
+
+    
 
     // Validar extension
     if ($extension !== 'pdf') {
@@ -122,9 +129,7 @@
 
     
 
-         $nombrearchivo = time() . "_" . basename($_FILES['archivo']['name']);
-       $ruta = "uploads/" . $nombrearchivo;
-       move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta);
+       
        
 
              if (empty($nivel)){
@@ -144,6 +149,9 @@
           $erroresvalicionesformularionoticia[] = "Se requiere 4 caracteres y solo numeros";        
 
       }
+      if ($ano < 1900 || $ano > 2100) {
+        $erroresvalicionesformularionoticia[] = "El año debe estar entre 1900 y 2100.";
+      }
      
   
 
@@ -151,6 +159,10 @@
             echo "<script>alert('Error en las validaciones prueba a enviado de nuevo'); window.location.href = 'formulario_programacion_y_noticias.php'</script>";
             exit();
         }    
+        
+          $nombrearchivo = time() . "_" . basename($_FILES['archivo']['name']);
+       $ruta = "uploads/" . $nombrearchivo;
+       move_uploaded_file($_FILES['archivo']['tmp_name'], $ruta);
       
 
       

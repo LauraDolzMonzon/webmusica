@@ -44,6 +44,7 @@
             <div id="div1inicio">
               <p>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n</p>
             </div>
+            <h2>Ultima noticia</h3>
             <div > 
               <?php    
             if ($resultadoindex && $resultadoindex->num_rows > 0) {   

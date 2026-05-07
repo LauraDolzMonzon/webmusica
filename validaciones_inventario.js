@@ -1,7 +1,7 @@
 
 
               document.addEventListener("DOMContentLoaded", function () { /*Sirve para ejecutar JavaScript cuando el DOM de la página ya está cargado.*/
-
+                        console.log("VALIDACIONES CARGADAS");
                 
                 const inputinstrumetro = document.getElementById("Intrumetroivenatario");
                 inputinstrumetro.oninvalid = function () {
@@ -17,11 +17,11 @@
                 input22.oninput = function () {
                     input22.setCustomValidity("");
                 };
-                 const input10 = document.getElementById("ano");
-                input10.oninvalid = function () {
-                    input10.setCustomValidity("Tiene que Tiene que tener 4 caracteres y solo números");       
+                 const input101 = document.getElementById("invetarioanodeadquision");
+                input101.oninvalid = function () {
+                    input101.setCustomValidity("Tiene que Tiene que tener 4 caracteres y solo números");       
                 };
-                input10.oninput = function () {
-                    input10.setCustomValidity("");
+                input101.oninput = function () {
+                    input101.setCustomValidity("");
                 };
 });                      

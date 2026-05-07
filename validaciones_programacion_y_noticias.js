@@ -26,10 +26,18 @@
                   } else {
                     inputfecha.setCustomValidity("");
                   }
-            });
+                }); 
+                 const inputtextonoticia = document.getElementById("textonoticia");
+                inputtextonoticia.oninvalid = function () {
+                        inputtextonoticia.setCustomValidity("Se requiere como mínimo 8 caracteres");       
+                };
+                inputtextonoticia.oninput = function () {
+                        inputtextonoticia.setCustomValidity("");
+                };  
+            
 
-                
-                //
+               
+                // 
                
                 const input8 = document.getElementById("textoprogamacion");
                 input8.oninvalid = function () {
@@ -39,12 +47,12 @@
                     input8.setCustomValidity("");
                 };
                 
-                const input10 = document.getElementById("ano");
-                input10.oninvalid = function () {
-                    input10.setCustomValidity("Tiene que Tiene que tener 4 caracteres y solo números");       
+                const input102 = document.getElementById("ano");
+                input102.oninvalid = function () {
+                    input102.setCustomValidity("Tiene que Tiene que tener 4 caracteres y solo números");       
                 };
-                input10.oninput = function () {
-                    input10.setCustomValidity("");
+                input102.oninput = function () {
+                    input102.setCustomValidity("");
                 };
                 
             
@@ -58,4 +66,18 @@
                 inputachivo.oninput = function () {
                    inputachivo.setCustomValidity("");
                  };
-});                 
+    
+    document.getElementById("formularionoticiaid").addEventListener("submit", function(e) {
+    if (!validarAno()) {
+        e.preventDefault();
+    }
+});
+
+document.getElementById("formularionoticiaid").addEventListener("submit", function(e) {
+    if (!validarPDF()) {
+        e.preventDefault();
+    }
+});
+});
+
+          

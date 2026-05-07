@@ -79,7 +79,7 @@ $resultadolistadoprogramacioaeliminar = mysqli_query($conn, $sqllistadoprogramac
                     <button class="botonparaenviarformularioprogamacionynoticias" type="submit" name="botonparaenviarnoticias">Enviar</button>
                 </form>
                 <h3> Programaci&oacute;n</h3>
-                <form action="controladornoticias.php" method="post" enctype="multipart/form-data">
+                <form id="formularionoticiaid" action="controladornoticias.php" method="post" enctype="multipart/form-data" >
                     <div class="grindclass4">  
                         <label for="dni_profesor_todos">Elige el profesor</label>
                         <select name="dni_profesor_todos" id="dni_profesor_todos_id" required >
