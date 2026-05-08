@@ -1,7 +1,9 @@
 <?php
-    require __DIR__. "/conexion.php";
-?>
-<?php
+    session_start();
+   if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+        header("Location: inventario.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
     <html>
@@ -22,6 +24,8 @@
                 <li><a href="login_formulario_noticias_y_programacion.php">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>
                 <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+                <li><a href="logout.php">Cerrar sesión</a></li>
+
 
              </ul>
            </nav>

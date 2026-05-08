@@ -1,3 +1,10 @@
+<?php
+  session_start();
+   if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+        header("Location: formulario_programacion_y_noticias.php");
+        exit();
+    }
+?>
 <!DOCTYPE html>
     <html>
         <head>
@@ -25,6 +32,8 @@
                 <li><a href="#">Formulario de noticias y formulario de programaci&oacute;n</a></li>
                 <li><a href="formulario_contacto.php">Contacto</a></li>   
                 <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+                <li><a href="logout.php">Cerrar sesión</a></li>
+
 
             </ul>
           </nav>
