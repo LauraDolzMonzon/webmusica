@@ -1,114 +1,232 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="validaciones_inventario.js"> </script>
-        <link  rel="stylesheet" href="estilos.css">
-        <title> Inventario</title>
+:root{
+    --color_azul: #5C80BC;
+    --color_blanco: #FAFAFA;
+    --color_negro: #000000;
+    --color_naranga: #FED9B7;
+    --color_verde: #6BAB90;
+}
+*{
+    text-align: center;
+    margin: auto;
+}
+nav{
+    background-color:  var(--color_verde);
+    padding:   1.7vw;
+    width: 100%;
+    margin-bottom: 1vw;
+}
+main{
+    background-color: var(--color_blanco);
+}
+footer{
+    background-color:  var(--color_verde);
+    margin-top: 1vw;
+    width: 100%;
+    padding: 1vw;
+}
+li{
+    display: inline-block;
+
+}
+a{
+   color:  var(--color_naranga);
+   text-decoration: none;
+   font-family: Arial, Helvetica, sans-serif;
+   margin-inline: 10px;
+   font-size: 1vw;
+}
+
+td, th, tr{
+    border: solid;
+    font-family: Arial, Helvetica, sans-serif;
+    border-color: #000000;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    font-size: 1vw;
+
+   
+}
+table{
+    border: 2px solid #000;
+    width: 50%;
+    border-collapse: collapse;
+    background-color: var(--color_blanco);
+    margin-bottom: 1vw;
+}
+#div1inicio{
+    padding-bottom: 1vw;
+    padding-top: 1vw;
+}
+input{
+    font-family: Arial, Helvetica, sans-serif;
+    border: 1.5px solid var(--color_azul);
+    margin-bottom: 10px;    
+    border-radius: 6px;
+    width: 100%;
+    font-size: 0.75vw;
+
+}
 
 
+label{
+    font-family: Arial, Helvetica, sans-serif;   
+    font-size: 1vw;
 
-    </head>
-    <body>
-        <nav>       
-            <ul>   
-                <a href="index.html">Inicio</a>
-                <a href="noticias_y_programacion.html">Noticias y programaci&oacute;n</a>
-                <a href="login_inventario.html">Inventario</a>
-                <a href="login_formulario_inventario.html">Formulario de inventario</a>
-                <a href="login_formulario_noticias_y_programacion.html">Formulario de noticias y formulario de programaci&oacute;n</a>
-                <a href="formulario_contacto.html">Contacto</a>
-            </ul>
-        </nav>
-        <header><h2>Inventario</h2></header>        
-        <main>
-            <h3>A&ntilde;adir instrumento</h3>
-            <form action="controlador.php" method="post">
-              <table>
-                <tr>
-                    <th><label for="Intrumetroivenatario">Instrumento</label></th>
-                    <th><label for="invetariofamilia">Familia</label></th>
-                    <th><label for="ivetarioubicacion">Aula</label> </th>
-                    
-                    <th><label for="invetariounidades">Unidades</label></th>
-                    <th><label for="invetarioanodeadquision">A&ntilde;o de adquisici&oacute;n</label></th>
-                    <th><label for="botonadminstrainventario">Enviar</label></th>
-                </tr>
-                <tr>
-                    <td><input type="text" id="Intrumetroivenatario" name="Intrumetroivenatario" pattern="[A-Z0a-zñÑ]+" required> </td>
-               
-                    <td>
-                    
-                        <select name="invetariofamilia" id="invetariofamilia" required>
-                            <option value="sinespecificarfamilia2"></soption>
-                            <option value="vientometral">Viento metal</option>
-                            <option value="vientomadera">Viento madera</option>
-                            <option value="pesucion">Percusi&oacute;n</option>
-                            <option value="cuerda">Cuerda</option>
-                        </select> 
-                    </td>
-                    <td>  <select name="ivetarioubicacion" id="ivetarioubicacion" required>
-                            <option value="sinespecificarubicacion2"></option>
-                            <option value="RMU1">RMU1</option>
-                            <option value="RMU2">RMU2</option>
-                        </select>
-                    </td>
-                    <td><input type="text" id="invetariounidades" name="invetariounidades" pattern="^[0-9]+$" required> </td> 
-                    
+}
+.botonparaenviarlogin{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+    margin-top: 2vw; 
+    font-size: 0.85vw;
 
-                    
-                       
+}
+.botonparaenviarcontacto{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+    margin-top: 5vw;
+    font-size: 0.85vw;
 
-                    <td><input type="text" id="invetarioanodeadquision" name="invetarioanodeadquision" pattern="^[0-9]{4}$" maxlength="4" minlength="4" required> </td>
-                   
-                    <td><button class="botonadminstrainventario">Enviar</button></td>
-                 </tr>  
-               </table>
-               <h3>Administrar instrumentos</h3>
-            </form>        
-            <div > 
-               <form action="controlador.php"     method="post">
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>Instrumento</th>
-                        <th>Familia</th>
-                        <th>Ubicaci&oacute;n</th>
-                        <th>Unidades</th>
-                        <th>A&ntilde;o de adquisici&oacute;n</th>
-                        <th Colspan="2">Administrar</th>
-                        
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="botonadminstrainventarioeditaryeliminar" >Editar</button></td>
-                        <td><button class="botonadminstrainventarioeditaryeliminar">Eliminar</button></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><button class="botonadminstrainventarioeditaryeliminar">Editar</button></td>
-                        <td><button class="botonadminstrainventarioeditaryeliminar">Eliminar</button></td>
-                    </tr>
-                </table>
-              </form>  
-           </div>     
-        </main>
-        <footer>    
-            <h4>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n.</h4>
+}
+.grindclass{ /*Para los formularios de los logins*/
+    display: grid;
+    grid-template-columns: 25% 25%;
+    grid-template-rows: auto 1px;
+    height: 5px;
+    width: 45%;
+    justify-content: center;
+}
+h3, h1{
+    margin: 0.7vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.25vw;
+}
 
-        </footer>
-        
-    </body>
-  </html>
+h2 {
+    margin: 0.5vw;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.35vw;
+}
+
+.grindclass2{ /*para el formulario de concato y de las noticias*/
+    display: grid;
+    grid-template-columns: 25% 25%;
+    grid-template-rows: auto 30px;
+    height: 2vw;
+    width: 45%;
+    justify-content: center;
+    margin-bottom: 1.5px;
+}
+textarea{ 
+    width: 100%;
+    height: 3vw;
+    font-family: Arial, Helvetica, sans-serif;
+    resize: none;
+    overflow: auto;
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px; 
+    font-size: 0.75vw;
+}
+.h3nyp{
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 1vw;
+    font-size: 1vw;
+
+}
+h4, p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.90vw;
+}
+.botonadminstrainventario {
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;  
+    font-size: 0.85vw;
+
+}
+.botonparaenviarformularioprogamacionynoticias{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+    margin-top: 5.2vw;
+    font-size: 0.85vw;
+
+}
+.botonparaenviarformularioprogamacionynoticias2{
+     font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+    margin-top: 2.2vw;
+    font-size: 0.85vw;
+
+}
+.grindclass4{ /*para el formulario de la programación*/
+    display: grid;
+    grid-template-columns: 25% 25%;
+    grid-template-rows: auto 40px;
+    height: 3.5vw;
+    width: 45%;
+    justify-content: center; 
+}
+#achivo{
+    width: 100%; 
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+}
+button{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+    font-size: 0.85vw;
+
+}  
+#Intrumetroivenatario, #ivetarioubicacion, #invetariofamilia, #invetariounidades, #invetarioanodeadquision{
+    width: 90%;
+}  
+#achivo::-moz-focus-inner {
+    outline: none !important;
+}
+.tablaphp {
+    margin-bottom: 1vw;
+    border: solid 2px;
+    width: 50%;
+    border-collapse: collapse;
+    background-color: var(--color_blanco);
+    
+}
+#botonparaenviarflito{
+   font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--color_naranga);
+    border: 1.5px solid var(--color_azul);
+    border-radius: 6px;
+    font-size: 0.85vw;
+    margin-bottom: 0.5vw;
+    margin-top: 0.4vw;
+}
+select{
+   appearance: none;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 0.85vw; 
+}
+.admistrarfyn{
+    margin-top: 1vw;
+}
+
+/* #idflito{
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: auto 0px;
+    height: 200px;
+    width: 45%;
+    justify-content: center;
+ }
+
+ 

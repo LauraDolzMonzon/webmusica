@@ -1,55 +1,118 @@
 <!DOCTYPE html>
-    <html>
-        <head>
-          
-          
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="validaciones_login_programacion_y_noticias.js" defer></script>
-
-            <link  rel="stylesheet" href="estilos.css">
-            <title>Login Formulario de Noticias y Programaci&oacute;n</title>
-    
-
-        </head>
+  <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link  rel="stylesheet" href="estilos.css">
+        <title> Inventario</title>
 
 
-        <body>
-          <nav>       
-            <ul>   
+
+    </head>
+    <body>
+        <nav>       
+            <ul>            
                 <a href="index.html">Inicio</a>
                 <a href="noticias_y_programacion.html">Noticias y programaci&oacute;n</a>
                 <a href="login_inventario.html">Inventario</a>
                 <a href="login_formulario_inventario.html">Formulario de inventario</a>
-                <a href="#">Formulario de noticias y formulario de programaci&oacute;n</a>
+                <a href="login_formulario_noticias_y_programacion.html">Formulario de noticias y formulario de programaci&oacute;n</a>
                 <a href="formulario_contacto.html">Contacto</a>
             </ul>
-          </nav>
-          <header>
-            <h2>Login Formulario de Noticias y Programaci&oacute;</h2>
-          </header>  
-          <main>
-            <form action="controlador.php" method="post">
-              <div class="grindclass">  
-                <label for="usuariofyp">Usuario:</label>
+        </nav>
+        <header><h2>inventario</h2></header>        
+        <main>
+          <div id="idflito"> 
+             <div class="flitoclass">
 
-                <input type="text" id="usuariofyp" name="usuariofyp" pattern="^[A-Z0-9]{9}$"  minlength="9" maxlength="9" required>
+                <form action="controlador.php" method="post">
+                        <label for="flitofamilia">Filtro familia</label>
+                    
+                        <select name="flitofamilia" id="flitofamilia">
+                            <option value="sinespecificarfamilia">Sin especificar</soption>
+                            <option value="vientometal">Viento metal</option>
+                            <option value="vientomadera">Viento madera</option>
+                            <option value="percusion ">Percusi&oacute;n</option>
+                            <option value="cuerda">Cuerda</option>
+                        </select>
+                        <button class="botonparaenviarflito" type="submit">Enviar</button>
 
-                  
-                <label  for="contrasenafyp">Contrase&ntilde;a:</label> 
-    
-                <input type="password" id="contrasenafyp" name="contrasenafyp" minlength="8" required>
-                 
-              </div><br>
-              <button class="botonparaenviarlogin" type="submit">Enviar</button>
+                    </form>
+                </div>
+                <div class="flitoclass">
+                    <form action="controlador.php"  method="post">  
+                        <label for="flitoubicacion">Filtro aula</label>
 
-          </form>
-            <a href="formulario_programacion_y_noticias.html">Enlace provisional para entrar al formulario de Noticias y Programaci&oacute;n, porque todavía no hay PHP</a>
-          </main>
-          <footer>
-                 <h4>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n.</h4>
+                        <select name="flitoubicacion" id="flitoubicacion">
+                            <option value="sinespecificarubicacion">Sin especificar</option>
+                            <option value="RMU1">RMU1</option>
+                            <option value="RMU2">RMU2</option>
+                        </select>
+                        <button class="botonparaenviarflito" type="submit">Enviar</button>
 
-          </footer>
-        </body>
+                    </form>
+                    <form action="controlador.php" method="post">
+                        <label for="flitoano">Filtro cantidad</label>
 
-    </html>    
+                        <select name="flitoucantidad" id="flitocantidad">
+                            <option value="sinespecificarcantidad">Sin especificar</option>
+                            <option value="RMU1">Accente</option>
+                            <option value="RMU2">Deccente</option>
+                        </select>
+                        <button class="botonparaenviarflito" type="submit">Enviar</button>
+
+                    </form>
+                </div>
+                    <div class="flitoclass">
+                    <form action="controlador.php" method="post">
+                        <label for="flitoano">Flito a&ntilde;o</label>
+
+                            <select name="flitoano" id="flitoano">
+                                <option value="sinespecificarano">Sin especificar</option>
+                                <option value="accente">Accente</option>
+                                <option value="descente">Descente</option>
+                            </select>
+                            <button class="botonparaenviarflito" type="submit">Enviar</button>
+
+                            
+                            
+
+                    </form>  
+                </div>    
+            </div>  
+            <div > 
+              <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Instrumento</th>
+                    <th>Familia</th>
+                    <th>Ubicaci&oacute;n</th>
+                    <th>Unidades</th>
+                    <th>A&ntilde;o de adquisici&oacute;n</th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                <tr>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                    <td> </td>
+                </tr>
+                </table>
+           </div>     
+        </main>
+        <footer>    
+            <h4>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n.</h4>
+
+        </footer>
+        
+    </body>
+  </html>

@@ -1,3 +1,10 @@
+<?php
+  session_start();
+   if (isset($_SESSION['rol']) && $_SESSION['rol'] === 'admin') {
+        header("Location: formulario_programacion_y_noticias.php");
+        exit();
+    }
+?>
 <!DOCTYPE html>
     <html>
         <head>
@@ -5,9 +12,9 @@
           
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="validaciones_login_programacion_y_noticias.js" defer></script>
+            <script src="../validaciones_login_programacion_y_noticias.js" defer></script>
 
-            <link  rel="stylesheet" href="estilos.css">
+            <link  rel="stylesheet" href="../estilos.css">
             <title>Login Formulario de Noticias y Programaci&oacute;n</title>
     
 
@@ -17,19 +24,24 @@
         <body>
           <nav>       
             <ul>   
-                <a href="index.html">Inicio</a>
-                <a href="noticias_y_programacion.html">Noticias y programaci&oacute;n</a>
-                <a href="login_inventario.html">Inventario</a>
-                <a href="login_formulario_inventario.html">Formulario de inventario</a>
-                <a href="#">Formulario de noticias y formulario de programaci&oacute;n</a>
-                <a href="formulario_contacto.html">Contacto</a>
+              
+                <li><a href="index.php">Inicio</a></li>
+                <li><a href="noticias_y_programacion.php">Noticias y programaci&oacute;n</a></li>
+                <li><a href="login_inventario.php">Inventario</a></li>
+                <li><a href="login_formulario_inventario.php">Formulario de inventario</a></li>
+                <li><a href="#">Formulario de noticias y formulario de programaci&oacute;n</a></li>
+                <li><a href="formulario_contacto.php">Contacto</a></li>   
+                <li><a href="login_bandeja_contacto.php">Bandeja Contacto</a></li>
+                <li><a href="logout.php">Cerrar sesión</a></li>
+
+
             </ul>
           </nav>
           <header>
-            <h2>Login Formulario de Noticias y Programaci&oacute;</h2>
+            <h2>Login Formulario de Noticias y Programaci&oacute;n</h2>
           </header>  
           <main>
-            <form action="controlador.php" method="post">
+            <form action="controladorloginfyn.php" method="post">
               <div class="grindclass">  
                 <label for="usuariofyp">Usuario:</label>
 
@@ -44,7 +56,6 @@
               <button class="botonparaenviarlogin" type="submit">Enviar</button>
 
           </form>
-            <a href="formulario_programacion_y_noticias.html">Enlace provisional para entrar al formulario de Noticias y Programaci&oacute;n, porque todavía no hay PHP</a>
           </main>
           <footer>
                  <h4>Bienvenido a la web del Departamento de M&uacute;sica del IES Bajo Arag&oacute;n.</h4>
