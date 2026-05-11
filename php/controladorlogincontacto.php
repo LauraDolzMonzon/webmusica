@@ -18,17 +18,17 @@
     $erroresvalicioneslongicontacto = [];
 
      if (empty($usuarioicontacto)){
-    $erroresvalicioneslongicontacto[] = "El usuario no puede esta vacido ";
+    $erroresvalicioneslongicontacto[] = "El usuario no puede esta vacío ";
 
     }
     if (!preg_match('/^[A-Z0-9]{9}$/', $usuarioicontacto)){
-      $erroresvalicioneslongicontacto[] = "Se requiere 8 números y una letra mayúscula ";
+      $erroresvalicioneslongicontacto[] = "Se requieren 8 números y una letra mayúscula ";
     }
     if (strlen($contrasenacontacto) < 8){
       $erroresvalicioneslongicontacto[] = "Se requiere como mínimo 8 caracteres ";
     }
    if (!empty($erroresvalicioneslongicontacto)){
-       echo "<script>window.history.back();</script>";
+       header("Location: login_bandeja_contacto.php");
        exit();
       }
                   

@@ -16,10 +16,13 @@
       $erroresvalicioneslogininvetario = [];
 
        if (empty($usuariologinformularioinventario)){
-        $erroresvalicioneslogininvetario[] = "El usuario no puede esta vacido ";
+        $erroresvalicioneslogininvetario[] = "El usuario no puede esta vacío ";
+      }
+      if (empty($contrasenaloginformularioinventario)){
+        $erroresvalicioneslogininvetario[] = "La contraseña no puede esta vacío ";
       }
       if (!preg_match('/^[A-Z0-9]{9}$/', $usuariologinformularioinventario)){
-        $erroresvalicioneslogininvetario[] = "Se requiere 8 números y una letra mayúscula ";
+        $erroresvalicioneslogininvetario[] = "Se requieren 8 números y una letra mayúscula ";
       }
       if (strlen($contrasenaloginformularioinventario) < 8){
         $erroresvalicioneslogininvetario[] = "Se requiere como mínimo 8 caracteres ";
@@ -30,7 +33,7 @@
 
     
       if (!empty($erroresvalicioneslogininvetario)){
-       echo "<script>window.history.back();</script>";
+       header("Location: login_formulario_inventario.php");
        exit();
       }
         

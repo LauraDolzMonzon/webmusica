@@ -29,14 +29,14 @@
       
 
         if (empty($noticainventario)){
-            $erroresvalicionesformularionoticiayp[] = "no se puede dejar el titulo vacido";
+            $erroresvalicionesformularionoticiayp[] = "No se puede dejar el titulo vacío";
         }
         
         if (empty($lugar)){
-            $erroresvalicionesformularionoticiayp[] = "no se puede dejar el lugar vacido";
+            $erroresvalicionesformularionoticiayp[] = "No se puede dejar el lugar vacío";
         }
          if (empty($textonoticia)){
-            $erroresvalicionesformularionoticiayp[] = "no se puede dejar la ruta vacido";
+            $erroresvalicionesformularionoticiayp[] = "No se puede dejar la ruta vacío";
 
         }
          if (strlen($noticainventario) < 5){
@@ -133,20 +133,20 @@ if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK)
        
 
              if (empty($nivel)){
-            $erroresvalicionesformularionoticia[] = "no se puede dejar el nivel vacido";
+            $erroresvalicionesformularionoticia[] = "no se puede dejar el nivel vacío";
         }
         if (empty($ano)){
-            $erroresvalicionesformularionoticia[] = "no se puede dajar el año vacido";
+            $erroresvalicionesformularionoticia[] = "no se puede dajar el año vacío";
         }
         if (empty($dni_prfosesor_programacion)){
-            $erroresvalicionesformularionoticia[] = "no se puede dejar el profesor vacido";
+            $erroresvalicionesformularionoticia[] = "no se puede dejar el profesor vacío";
         }
         
          
       
       
       if (!preg_match('/^[0-9]{4}$/', $ano)){
-          $erroresvalicionesformularionoticia[] = "Se requiere 4 caracteres y solo numeros";        
+          $erroresvalicionesformularionoticia[] = "Se requieren 4 caracteres y solo numeros";        
 
       }
       if ($ano < 1900 || $ano > 2100) {
@@ -178,7 +178,7 @@ if (!isset($_FILES['archivo']) || $_FILES['archivo']['error'] !== UPLOAD_ERR_OK)
         VALUES (?, ?)");
         $stmt2->bind_param("si", $dni_prfosesor_programacion, $id_programacion_intermedio);
         if($stmt2->execute()) {
-          echo "<script>alert('Programacion guardara');  window.location.href='formulario_programacion_y_noticias.php';</script>";
+          echo "<script>alert('Programación guardara');  window.location.href='formulario_programacion_y_noticias.php';</script>";
         } else{  
 
           $error = addslashes($stmt2->error);

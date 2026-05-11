@@ -17,16 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $erroresvalicionescontrolador = [];
 
       if (empty($dniusuarioinventario)){
-        $erroresvalicionescontrolador[] = "El usuario no puede esta vacido controlador";
+        $erroresvalicionescontrolador[] = "El usuario no puede esta vacío";
+      }
+       if (empty($contrasenainventario)){
+        $erroresvalicionescontrolador[] = "La contrasena no puede esta vacío";
       }
       if (!preg_match('/^[A-Z0-9]{9}$/', $dniusuarioinventario)){
-        $erroresvalicionescontrolador[] = "Se requiere 8 números y una letra mayúscula controlador";
+        $erroresvalicionescontrolador[] = "Se requieren 8 números y una letra mayúscula";
       }
       if (strlen($contrasenainventario) < 8){
-        $erroresvalicionescontrolador[] = "Se requiere como mínimo 8 caracteres controlador";
+        $erroresvalicionescontrolador[] = "Se requiere como mínimo 8 caracteres";
       }   
       if (!empty($erroresvalicionescontrolador)){
-          echo "<script>window.location.href = 'login_inventario.php';</script>";
+         
+          header("Location: login_inventario.php");
           exit();
       }      
     $rolespermitido = ['admin', 'profesor'];

@@ -16,19 +16,22 @@
     $erroresvalicionesloginfyn = [];
 
     if (empty($usuariofyp)){
-          $erroresvalicionesloginfyn[] = "El usuario no puede esta vacido ";
+          $erroresvalicionesloginfyn[] = "El usuario no puede esta vacío ";
 
 
     }
+    if (empty($contrasenafyp)){
+          $erroresvalicionesloginfyn[] = "El usuario no puede esta vacío ";
+    }      
     if (!preg_match('/^[A-Z0-9]{9}$/', $usuariofyp)){
-      $erroresvalicionesloginfyn[] = "Se requiere 8 números y una letra mayúscula  ";
+      $erroresvalicionesloginfyn[] = "Se requieren 8 números y una letra mayúscula  ";
     }
     if (strlen($contrasenafyp) < 8){
       $erroresvalicionesloginfyn[] = "Se requiere como mínimo 8 caracteres ";
     }
     if (!empty($erroresvalicionesloginfyn)){
-       echo "<script>window.history.href= 'login_formulario_noticias_y_programacion.php';</script>";
-       exit();
+          header("Location: login_formulario_noticias_y_programacion.php");
+          exit();
     }
               
     $sql2 = "SELECT dni, contrasenya, rol FROM profesor WHERE dni = ?";

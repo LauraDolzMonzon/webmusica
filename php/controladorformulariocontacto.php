@@ -16,13 +16,13 @@
         $dni_conacto = '00000000A';
         $erroresvalicionesformulariocontratos = [];
         if (empty($emailcontacto)){
-            $erroresvalicionesformulariocontratos[] = "no se puede dejar el email vacido";
+            $erroresvalicionesformulariocontratos[] = "No se puede dejar el email vacío";
         }
         if (empty($asuntocontacto)){
-            $erroresvalicionesformulariocontratos[] = "no se puede dajar el asunto vacido";
+            $erroresvalicionesformulariocontratos[] = "No se puede dajar el asunto vacío";
         }
         if (empty($enviartextos)){
-            $erroresvalicionesformulariocontratos[] = "no se puede dejar el texto vacido";
+            $erroresvalicionesformulariocontratos[] = "No se puede dejar el texto vacío";
         }
         if (!empty($erroresvalicionesformulariocontratos)){
             echo "<script>window.location.href = 'formulario_contacto.php';</script>";

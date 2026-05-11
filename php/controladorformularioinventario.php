@@ -83,7 +83,7 @@
 
           if (!empty($erroresFormularioInventario)) {
               $_SESSION['erroresFormularioInventario'] = $erroresFormularioInventario;
-              echo "<script>alert('errores en la validaciones '); window.location.href='formulario_inventario.php';</script>"; 
+              echo "<script>alert('Errores en las validaciones'); window.location.href='formulario_inventario.php';</script>"
               exit();
           }
 
@@ -116,7 +116,7 @@
 
           if (!empty($erroresFormularioInventario)) {
               $_SESSION['erroresFormularioInventario'] = $erroresFormularioInventario;
-              echo "<script>alert('errores en la validaciones '); window.location.href='formulario_inventario.php';</script>"; 
+              echo "<script>alert('Errores en las validaciones '); window.location.href='formulario_inventario.php';</script>"; 
               exit();
           }
 
@@ -125,9 +125,9 @@
           VALUES (?, ?, ?, ?, ?, ?)");
           $stmt->bind_param("sssiss", $Intrumetroivenatario, $invetariofamilia, $ivetarioubicacion, $invetariounidades, $invetarioanodeadquision, $dni_formularioinvetario);
           if($stmt->execute()){
-            echo "<script>alert('Instumeto guardado'); window.location.href = 'formulario_inventario.php'; </script>";
+            echo "<script>alert('Instrumento guardado'); window.location.href = 'formulario_inventario.php'; </script>";
           } else{
-            echo "<script>alert('instrumeto no guardado o error ". $conn->error ."'); window.location.href = 'formulario_inventario.php'; </script>";
+            echo "<script>alert('Instrumento no guardado o error ". $conn->error ."'); window.location.href = 'formulario_inventario.php'; </script>";
           }
           $stmt->close();
     }
@@ -157,7 +157,7 @@
           $instrumentoEditar = $resultadoeditar->fetch_assoc();
                   echo "<script>alert('Editando instrumento: " . $instrumentoEditar['dispositivo_acustico'] . "'); window.location.href = 'formulario_inventario.php?id_editar=$id';</script>";
         } else{
-          echo "<script>alert('No se puede editar eñ instrumento');   window.location.href = 'formulario_inventario.php';</script>";
+          echo "<script>alert('No se puede editar el instrumento');   window.location.href = 'formulario_inventario.php';</script>";
         }
           $stmt->close();
         }
