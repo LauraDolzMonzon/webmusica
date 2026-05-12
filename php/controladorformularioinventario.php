@@ -26,7 +26,7 @@
         $erroresFormularioInventario[] = "El instrumento solo puede contener letras, espacios y acentos.";
     }
 
-    $familias_validas = ["sinespecificarfamilia", "vientometral", "vientomadera", "pesucion", "cuerda"];
+    $familias_validas = ["sinespecificarfamilia", "vientometral", "vientomadera", "percusion", "cuerda"];
     if (empty($_POST['invetariofamilia'])) {
         $erroresFormularioInventario[] = "Debes seleccionar una familia.";
     } elseif (!in_array($_POST['invetariofamilia'], $familias_validas)) {

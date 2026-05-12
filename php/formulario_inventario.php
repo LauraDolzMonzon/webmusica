@@ -93,7 +93,7 @@
                             <option value="sinespecificarfamilia" <?php if(($instrumentoEditar['familia'] ?? '')=='sinespecificarfamilia') echo 'selected'; ?>>Sin especificar</option>
                             <option value="vientometral" <?php if(($instrumentoEditar['familia'] ?? '')=='vientometral') echo 'selected'; ?>>Viento metal</option>
                             <option value="vientomadera" <?php if(($instrumentoEditar['familia'] ?? '' )=='vientomadera') echo 'selected'; ?>>Viento madera</option>
-                            <option value="pesucion" <?php if(($instrumentoEditar['familia'] ?? '' )=='pesucion') echo 'selected'; ?>>Percusi&oacute;n</option>
+                            <option value="percusion" <?php if(($instrumentoEditar['familia'] ?? '' )=='percusion') echo 'selected'; ?>>Percusi&oacute;n</option>
                             <option value="cuerda"  <?php if(($instrumentoEditar['familia'] ?? '' )=='cuerda') echo 'selected'; ?>>Cuerda</option>
                         </select> 
                     </td>
