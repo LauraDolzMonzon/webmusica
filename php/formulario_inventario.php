@@ -85,7 +85,7 @@
 
                 </tr>
                 <tr>
-                    <td><input type="text" id="Intrumetroivenatario" name="Intrumetroivenatario" pattern="^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$" value="<?php echo $instrumentoEditar['dispositivo_acustico'] ?? ''; ?>" required > </td>
+                    <td><input type="text" id="Intrumetroivenatario" name="Intrumetroivenatario" pattern="^[A-Za-zñÑáéíóúüÜÁÉÍÓÚ ]+$" value="<?php echo $instrumentoEditar['dispositivo_acustico'] ?? ''; ?>" required > </td>
                
                     <td>
                     
@@ -101,7 +101,7 @@
                             <option value="sinespecificarubicacion">Sin especificar</option>
                             <option value="RMU1" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'RMU1') echo 'selected'; ?>>RMU1</option>
                             <option value="RMU2" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'RMU2') echo 'selected'; ?>>RMU2</option>
-                            <option value="En varias aulas" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'En varias aulas') echo 'selected' ?>>En varias aulas</option> 
+                            <option value="En las 2 aulas" <?php if(($instrumentoEditar['ubicacion'] ?? '')== 'En las 2 aulas') echo 'selected' ?>>En las 2 aulas</option> 
                         </select>
                     </td>
                     <td><input type="text" id="invetariounidades" name="invetariounidades" pattern="^[0-9]+$"  value="<?php echo $instrumentoEditar['unidades'] ?? ''; ?>" required> </td> 

@@ -22,7 +22,7 @@
 
     if (empty($_POST['Intrumetroivenatario'])) {
         $erroresFormularioInventario[] = "El campo Instrumento no puede estar vacío.";
-    } elseif (!preg_match("/^[A-Za-zñÑáéíóúÁÉÍÓÚ ]+$/u", $_POST['Intrumetroivenatario'])) {
+    } elseif (!preg_match("/^[A-Za-zñÑáéíóúüÁÉÍÓÚÜ ]+$/u", $_POST['Intrumetroivenatario'])) {
         $erroresFormularioInventario[] = "El instrumento solo puede contener letras, espacios y acentos.";
     }
 
@@ -33,7 +33,7 @@
         $erroresFormularioInventario[] = "La familia seleccionada no es válida.";
     }
 
-    $ubicaciones_validas = ["sinespecificarubicacion", "RMU1", "RMU2", "En varias aulas"];
+    $ubicaciones_validas = ["sinespecificarubicacion", "RMU1", "RMU2", "En las 2 aulas"];
     if (empty($_POST['ivetarioubicacion'])) {
         $erroresFormularioInventario[] = "Debes seleccionar una ubicación.";
     } elseif (!in_array($_POST['ivetarioubicacion'], $ubicaciones_validas)) {
@@ -83,7 +83,7 @@
 
           if (!empty($erroresFormularioInventario)) {
               $_SESSION['erroresFormularioInventario'] = $erroresFormularioInventario;
-              echo "<script>alert('Errores en las validaciones'); window.location.href='formulario_inventario.php';</script>"
+              echo "<script>alert('Errores en las validaciones'); window.location.href='formulario_inventario.php';</script>";
               exit();
           }
 
